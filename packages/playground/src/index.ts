@@ -1,1 +1,1 @@
-export default {};
+import '@abeidahmed/tailwindcss-elements';
