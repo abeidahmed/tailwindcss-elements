@@ -42,13 +42,13 @@ You can set the `checked` attribute on the element and it will be checked by def
 ```
 
 ```js
-const switch = document.querySelector('twc-switch');
+const element = document.querySelector('twc-switch');
 
 // On
-switch.checked = true;
+element.checked = true;
 
 // Off
-switch.checked = false;
+element.checked = false;
 ```
 
 ## Styling different states
