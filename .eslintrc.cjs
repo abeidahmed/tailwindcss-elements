@@ -13,7 +13,8 @@ module.exports = {
   env: { browser: true },
   overrides: [
     {
-      files: ['src/**/*.spec.ts'],
+      files: ['packages/**/*.test.ts'],
+      globals: { describe: true, it: true, beforeEach: true },
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
       },

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@abeidahmed/tailwindcss-elements": "^*",
     "vite": "^5.0.8"
   }
 }

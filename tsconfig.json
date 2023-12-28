@@ -18,6 +18,5 @@
     "strictPropertyInitialization": false,
     "target": "ES2017",
     "useDefineForClassFields": false
-  },
-  "include": ["packages/*"]
+  }
 }
