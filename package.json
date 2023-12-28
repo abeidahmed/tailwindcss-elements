@@ -5,7 +5,13 @@
   ],
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "yarn workspace @abeidahmed/tailwindcss-elements build",
+    "build:watch": "yarn workspace @abeidahmed/tailwindcss-elements build:watch",
+    "lint": "eslint 'packages/**/*.ts'",
+    "prettier": "prettier --check --log-level warn .",
+    "prettier:fix": "prettier --write --log-level warn ."
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.5",
     "@typescript-eslint/eslint-plugin": "^6.16.0",

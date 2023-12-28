@@ -27,5 +27,8 @@
     "web-components",
     "tailwindcss"
   ],
-  "scripts": {}
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "build:watch": "rollup --config rollup.config.js --watch"
+  }
 }
