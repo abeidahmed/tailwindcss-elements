@@ -8,7 +8,9 @@
   "scripts": {
     "build": "yarn workspace @abeidahmed/tailwindcss-elements build",
     "build:watch": "yarn workspace @abeidahmed/tailwindcss-elements build:watch",
+    "dev": "concurrently \"yarn build:watch\" \"yarn playground\"",
     "lint": "eslint 'packages/**/*.ts'",
+    "playground": "yarn workspace @abeidahmed/playground dev",
     "prettier": "prettier --check --log-level warn .",
     "prettier:fix": "prettier --write --log-level warn ."
   },
@@ -16,6 +18,7 @@
     "@rollup/plugin-typescript": "^11.1.5",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
+    "concurrently": "^8.2.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
