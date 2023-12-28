@@ -17,6 +17,7 @@ coverage
 
 # Compiled
 dist/
+dist-ssr/
 packages/docs/.vitepress/*
 !packages/docs/.vitepress/config.ts
 
