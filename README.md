@@ -8,7 +8,7 @@ A set of custom elements for TailwindCSS users.
 - Disclosure
 - Dropdown
 - Listbox (Select)
-- Popover
+- [Popover](./packages/core/src/elements/popover/README.md)
 - [Switch](./packages/core/src/elements/switch/README.md)
 - Tabs
 
