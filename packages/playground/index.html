@@ -6,7 +6,7 @@
     <title>Playground</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="min-h-screen flex items-center justify-center">
+  <body class="min-h-screen flex flex-col items-center justify-center">
     <div class="p-4">
       <twc-switch>
         <button
@@ -21,6 +21,27 @@
           ></span>
         </button>
       </twc-switch>
+    </div>
+
+    <div>
+      <twc-popover class="relative">
+        <button type="button" data-target="twc-popover.trigger">Toggle</button>
+        <div
+          data-target="twc-popover.panel"
+          class="hidden absolute w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
+        >
+          <p>This is a popover</p>
+          <twc-popover class="relative">
+            <button type="button" data-target="twc-popover.trigger">Toggle nested</button>
+            <div
+              data-target="twc-popover.panel"
+              class="hidden absolute w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
+            >
+              <p>Nested popover</p>
+            </div>
+          </twc-popover>
+        </div>
+      </twc-popover>
     </div>
     <script type="module" src="/src/index.ts"></script>
   </body>

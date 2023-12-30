@@ -34,5 +34,8 @@
   "peerDependencies": {
     "@ambiki/impulse": "^0.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "tabbable": "^6.2.0"
+  }
 }
