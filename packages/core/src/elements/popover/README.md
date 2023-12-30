@@ -5,9 +5,9 @@ A popover can contain any arbitrary content that is triggered by a button.
 ## Usage
 
 ```html
-<twc-popover>
+<twc-popover class="relative">
   <button data-target="twc-popover.trigger" type="button">Toggle popover</button>
-  <div data-target="twc-popover.panel" class="hidden data-[headlessui-state='open']:block">
+  <div data-target="twc-popover.panel" class="absolute hidden data-[headlessui-state='open']:block">
     Popover contents!
   </div>
 </twc-popover>
@@ -28,7 +28,7 @@ You can set the `open` attribute on the element and it will be open by default.
 ### Programatically toggling the visibility state
 
 ```html
-<twc-popover open>
+<twc-popover>
   ...
 </twc-popover>
 ```
