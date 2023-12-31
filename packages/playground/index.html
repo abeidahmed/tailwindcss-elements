@@ -73,6 +73,36 @@
         </div>
       </twc-dropdown>
     </div>
+
+    <div class="mt-8">
+      <button type="button" data-twc-dialog="dialog1">Open dialog</button>
+
+      <twc-dialog id="dialog1">
+        <dialog data-target="twc-dialog.dialog" class="p-4">
+          <button type="button" data-twc-dialog="dialog2">Open nested</button>
+          <twc-dialog id="dialog2">
+            <dialog data-target="twc-dialog.dialog" class="p-4">
+              <button type="button" data-action="click->twc-dialog#hide">Hide</button>
+            </dialog>
+          </twc-dialog>
+        </dialog>
+      </twc-dialog>
+    </div>
+
+    <div class="mt-8">
+      <twc-popover>
+        <button type="button" data-target="twc-popover.trigger">Open popover with dialog</button>
+        <div
+          data-target="twc-popover.panel"
+          class="hidden absolute w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
+        >
+          <button type="button" data-twc-dialog="popover-dialog">Open dialog</button>
+          <twc-dialog id="popover-dialog">
+            <dialog data-target="twc-dialog.dialog" class="p-4">Contents!</dialog>
+          </twc-dialog>
+        </div>
+      </twc-popover>
+    </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
