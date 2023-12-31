@@ -4,7 +4,7 @@ A set of custom elements for TailwindCSS users.
 
 ## Components
 
-- Dialog
+- [Dialog]('./packages/core/src/elements/dialog/README.md')
 - Disclosure
 - [Dropdown](./packages/core/src/elements/dropdown/README.md)
 - Listbox (Select)
