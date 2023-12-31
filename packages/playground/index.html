@@ -43,6 +43,36 @@
         </div>
       </twc-popover>
     </div>
+
+    <div class="mt-8">
+      <twc-dropdown class="relative">
+        <button type="button" data-target="twc-dropdown.trigger">Toggle dropdown</button>
+        <div
+          data-target="twc-dropdown.menu"
+          class="py-2 hidden absolute w-64 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
+        >
+          <a
+            href="#dashboard"
+            data-target="twc-dropdown.menuItems"
+            class="block w-full py-3 px-3 data-[headlessui-state='active']:bg-gray-100"
+            aria-disabled="true"
+            >Dashboard</a
+          >
+          <a
+            href="#settings"
+            data-target="twc-dropdown.menuItems"
+            class="block w-full py-3 px-3 data-[headlessui-state='active']:bg-gray-100"
+            >Settings</a
+          >
+          <a
+            href="#signout"
+            data-target="twc-dropdown.menuItems"
+            class="block w-full py-3 px-3 data-[headlessui-state='active']:bg-gray-100"
+            >Sign out</a
+          >
+        </div>
+      </twc-dropdown>
+    </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
