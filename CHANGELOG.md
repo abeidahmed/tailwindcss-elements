@@ -9,4 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add switch component
+- Add Dropdown component
+- Add Popover component
+- Add Switch component
