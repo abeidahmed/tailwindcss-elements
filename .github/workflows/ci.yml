@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".tool-versions"
+          cache: "yarn"
+      - name: Run ESLint
+        run: |
+          yarn install --frozen-lockfile
+          yarn lint
+
+  test:
+    needs:
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".tool-versions"
+          cache: "yarn"
+      - name: Run test
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+          yarn test
