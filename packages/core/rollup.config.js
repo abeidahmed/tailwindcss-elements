@@ -1,3 +1,4 @@
+import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 
 /**
@@ -15,8 +16,7 @@ export default [
         preserveModulesRoot: 'src',
       },
     ],
-    external: ['@ambiki/impulse'],
-    plugins: [typescript({ tsconfig: './tsconfig.build.json' })],
+    plugins: [resolve(), typescript({ tsconfig: './tsconfig.build.json' })],
   },
   {
     input: './src/index.ts',
@@ -25,11 +25,8 @@ export default [
         name: 'TailwindCSSElements',
         file: 'dist/index.umd.js',
         format: 'umd',
-        globals: {
-          '@ambiki/impulse': 'Impulse',
-        },
       },
     ],
-    plugins: [typescript({ tsconfig: './tsconfig.build.json' })],
+    plugins: [resolve({ browser: true }), typescript({ tsconfig: './tsconfig.build.json' })],
   },
 ];

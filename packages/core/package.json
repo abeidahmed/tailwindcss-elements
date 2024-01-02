@@ -36,6 +36,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@ambiki/impulse": "^0.2.0",
     "tabbable": "^6.2.0"
   }
 }
