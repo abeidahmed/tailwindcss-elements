@@ -14,6 +14,17 @@ or
 npm install @abeidahmed/tailwindcss-elements
 ```
 
+## Importing components
+
+```js
+// Imports all the components
+import '@abeidahmed/tailwindcss-elements';
+
+// Cherry pick what you need
+import '@abeidahmed/tailwindcss-elements/dist/elements/dialog';
+import '@abeidahmed/tailwindcss-elements/dist/elements/dropdown';
+```
+
 ## Components
 
 - [Dialog](./packages/core/src/elements/dialog/README.md)

@@ -3,6 +3,12 @@
 Switches are a pleasant interface for toggling a value between two states and offer the same semantics and keyboard
 navigation as native checkbox elements.
 
+## Imports
+
+```bash
+import '@abeidahmed/tailwindcss-elements/dist/elements/switch';
+```
+
 ## Usage
 
 ```html

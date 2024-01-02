@@ -2,6 +2,12 @@
 
 Displays a set of actions to the user with robust support for keyboard navigation.
 
+## Imports
+
+```bash
+import '@abeidahmed/tailwindcss-elements/dist/elements/dropdown';
+```
+
 ## Usage
 
 ```html

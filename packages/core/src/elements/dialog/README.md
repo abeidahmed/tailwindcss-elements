@@ -2,6 +2,12 @@
 
 A dialog component that uses the native `<dialog>` element to interrupt interaction with the rest of the page.
 
+## Imports
+
+```bash
+import '@abeidahmed/tailwindcss-elements/dist/elements/dialog';
+```
+
 ## Usage
 
 ```html
