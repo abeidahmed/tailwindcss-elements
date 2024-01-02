@@ -4,7 +4,7 @@ Displays a set of actions to the user with robust support for keyboard navigatio
 
 ## Imports
 
-```bash
+```js
 import '@abeidahmed/tailwindcss-elements/dist/elements/dropdown';
 ```
 
