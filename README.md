@@ -5,12 +5,9 @@ A set of custom elements for TailwindCSS users.
 ## Components
 
 - [Dialog](./packages/core/src/elements/dialog/README.md)
-- Disclosure
 - [Dropdown](./packages/core/src/elements/dropdown/README.md)
-- Listbox (Select)
 - [Popover](./packages/core/src/elements/popover/README.md)
 - [Switch](./packages/core/src/elements/switch/README.md)
-- Tabs
 
 ## License
 
