@@ -20,7 +20,7 @@ npm install @abeidahmed/tailwindcss-elements
 // Imports all the components
 import '@abeidahmed/tailwindcss-elements';
 
-// Cherry pick what you need
+// or, cherry pick what you need
 import '@abeidahmed/tailwindcss-elements/dist/elements/dialog';
 import '@abeidahmed/tailwindcss-elements/dist/elements/dropdown';
 ```
