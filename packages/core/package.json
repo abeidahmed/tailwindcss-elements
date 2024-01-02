@@ -25,7 +25,8 @@
     "./dist/elements/*": "./dist/elements/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "keywords": [
     "custom-elements",
