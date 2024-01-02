@@ -29,7 +29,9 @@
   ],
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "build:watch": "rollup --config rollup.config.js --watch"
+    "build:watch": "rollup --config rollup.config.js --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn clean && yarn build"
   },
   "peerDependencies": {
     "@ambiki/impulse": "^0.2.0"
