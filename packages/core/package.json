@@ -1,7 +1,7 @@
 {
   "name": "@abeidahmed/tailwindcss-elements",
   "version": "0.0.1",
-  "description": "A set of custom elements for TailwindCSS users.",
+  "description": "A set of accessible custom elements that pairs beautifully with Tailwind CSS.",
   "author": "abeidahmed",
   "license": "MIT",
   "publishConfig": {
