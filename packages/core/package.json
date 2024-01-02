@@ -33,10 +33,6 @@
     "clean": "rm -rf dist",
     "prepublishOnly": "yarn clean && yarn build"
   },
-  "peerDependencies": {
-    "@ambiki/impulse": "^0.2.0"
-  },
-  "devDependencies": {},
   "dependencies": {
     "@ambiki/impulse": "^0.2.0",
     "tabbable": "^6.2.0"
