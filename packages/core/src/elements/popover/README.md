@@ -31,7 +31,7 @@ You can set the `open` attribute on the element and it will be open by default.
 </twc-popover>
 ```
 
-### Programatically toggling the visibility state
+### Programmatically toggling the visibility state
 
 ```html
 <twc-popover>
@@ -90,7 +90,7 @@ plugin to target this attribute.
 
 ## Events
 
-| Name   | Bubbles   | Description                                                       |
-| ------ | --------- | ------------                                                      |
-| `show` | `false`   | This event fires when the popover is shown via user interaction.  |
-| `hide` | `false`   | This event fires when the popover is hidden via user interaction. |
+| Name                 | Bubbles   | Description                                                       |
+| ------               | --------- | ------------                                                      |
+| `twc-popover:shown`  | `true`    | This event fires when the popover is shown via user interaction.  |
+| `twc-popover:hidden` | `true`    | This event fires when the popover is hidden via user interaction. |

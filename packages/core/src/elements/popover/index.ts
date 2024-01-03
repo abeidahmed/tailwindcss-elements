@@ -38,7 +38,7 @@ export default class PopoverElement extends ImpulseElement {
             // Prevent dialogs from closing accidentally.
             event.preventDefault();
             this.trigger.focus();
-            this.emit('hide', { bubbles: false, prefix: false });
+            this.emit('hidden');
           }
         }
       },
@@ -103,11 +103,11 @@ export default class PopoverElement extends ImpulseElement {
     if (this.open) {
       this.open = false;
       this.trigger.focus();
-      this.emit('hide', { bubbles: false, prefix: false });
+      this.emit('hidden');
     } else {
       this.open = true;
       this._focusTrap = focusTrap(this.panel);
-      this.emit('show', { bubbles: false, prefix: false });
+      this.emit('shown');
     }
   }
 
@@ -119,7 +119,7 @@ export default class PopoverElement extends ImpulseElement {
           event.stopPropagation();
           this.open = false;
           this.trigger.focus();
-          this.emit('hide', { bubbles: false, prefix: false });
+          this.emit('hidden');
         }
         break;
     }
@@ -140,7 +140,7 @@ export default class PopoverElement extends ImpulseElement {
     // The action was invoked via a user interaction.
     if (event) {
       this.trigger.focus();
-      this.emit('hide', { bubbles: false, prefix: false });
+      this.emit('hidden');
     }
   }
 

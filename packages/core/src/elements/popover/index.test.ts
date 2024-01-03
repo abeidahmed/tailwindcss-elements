@@ -50,11 +50,11 @@ describe('Popover', () => {
       </twc-popover>
     `);
 
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const panel = el.querySelector('div')!;
@@ -62,12 +62,12 @@ describe('Popover', () => {
     trigger.click();
     assertPopoverShown(el, trigger, panel);
     expect(document.activeElement).to.eq(panel);
-    expect(showHandler.calledOnce).to.be.true;
+    expect(shownHandler.calledOnce).to.be.true;
 
     trigger.click();
     assertPopoverHidden(el, trigger, panel);
     expect(document.activeElement).to.eq(trigger);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('closes the popover by pressing the Escape key', async () => {
@@ -78,8 +78,8 @@ describe('Popover', () => {
       </twc-popover>
     `);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const panel = el.querySelector('div')!;
@@ -91,7 +91,7 @@ describe('Popover', () => {
     await sendKeys({ press: 'Escape' });
     assertPopoverHidden(el, trigger, panel);
     expect(document.activeElement).to.eq(trigger);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('closes the popover and emits an event when hide action is called', async () => {
@@ -103,8 +103,8 @@ describe('Popover', () => {
         </div>
       </twc-popover>
     `);
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector<HTMLButtonElement>('[data-target="twc-popover.trigger"]')!;
     const panel = el.querySelector('div')!;
@@ -117,7 +117,7 @@ describe('Popover', () => {
     closeButton.click();
     assertPopoverHidden(el, trigger, panel);
     expect(document.activeElement).to.eq(trigger);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('hides the popover when the hide function is called', async () => {
@@ -128,8 +128,8 @@ describe('Popover', () => {
       </twc-popover>
     `);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const panel = el.querySelector('div')!;
@@ -139,7 +139,7 @@ describe('Popover', () => {
 
     el.hide();
     assertPopoverHidden(el, trigger, panel);
-    expect(hideHandler.called).to.be.false;
+    expect(hiddenHandler.called).to.be.false;
   });
 
   it('toggles the popover when setting the open attribute', async () => {
@@ -150,22 +150,22 @@ describe('Popover', () => {
       </twc-popover>
     `);
 
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const panel = el.querySelector('div')!;
 
     el.open = true;
     assertPopoverShown(el, trigger, panel);
-    expect(showHandler.called).to.be.false;
+    expect(shownHandler.called).to.be.false;
 
     el.open = false;
     assertPopoverHidden(el, trigger, panel);
-    expect(hideHandler.called).to.be.false;
+    expect(hiddenHandler.called).to.be.false;
   });
 
   it('hides the popover when clicked outside', async () => {
@@ -176,8 +176,8 @@ describe('Popover', () => {
       </twc-popover>
     `);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector<HTMLButtonElement>('[data-target="twc-popover.trigger"]')!;
     const panel = el.querySelector('div')!;
@@ -187,7 +187,7 @@ describe('Popover', () => {
 
     await sendMouse({ type: 'click', position: [0, 0] });
     assertPopoverHidden(el, trigger, panel);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('shows the popover initially if the open attribute is set to true', async () => {
@@ -198,14 +198,14 @@ describe('Popover', () => {
       </twc-popover>
     `);
 
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
     const trigger = el.querySelector('button')!;
     const panel = el.querySelector('div')!;
 
     assertPopoverShown(el, trigger, panel);
-    expect(showHandler.called).to.be.false;
+    expect(shownHandler.called).to.be.false;
     expect(document.activeElement).to.eq(document.body);
   });
 

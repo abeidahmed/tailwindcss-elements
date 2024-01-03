@@ -42,7 +42,7 @@ export default class SwitchElement extends ImpulseElement {
 
   private handleToggle() {
     this.checked = !this.checked;
-    this.emit('change', { prefix: false, bubbles: false });
+    this.emit('changed');
   }
 
   private syncState(state: boolean) {

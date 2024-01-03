@@ -23,7 +23,7 @@ import 'tailwindcss-elements/elements/dropdown';
 
 ## Examples
 
-### Programatically toggling the visibility state
+### Programmatically toggling the visibility state
 
 ```html
 <twc-dropdown>
@@ -49,8 +49,8 @@ plugin to target this attribute.
 
 ## Events
 
-| Name     | Bubbles   | Description                                                                                                                                                           |
-| ------   | --------- | ------------                                                                                                                                                          |
-| `show`   | `false`   | This event fires when the menu is shown via user interaction.                                                                                                         |
-| `hide`   | `false`   | This event fires when the menu is hidden via user interaction.                                                                                                        |
-| `change` | `false`   | This event fires when a menu item is selected via user interaction. You can get the selected menu item by accessing the `relatedTarget` in the `event.detail` object. |
+| Name                   | Bubbles   | Description                                                                                                                                                           |
+| ------                 | --------- | ------------                                                                                                                                                          |
+| `twc-dropdown:shown`   | `true`    | This event fires when the menu is shown via user interaction.                                                                                                         |
+| `twc-dropdown:hidden`  | `true`    | This event fires when the menu is hidden via user interaction.                                                                                                        |
+| `twc-dropdown:changed` | `true`    | This event fires when a menu item is selected via user interaction. You can get the selected menu item by accessing the `relatedTarget` in the `event.detail` object. |
