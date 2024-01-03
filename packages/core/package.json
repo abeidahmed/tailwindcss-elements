@@ -1,5 +1,5 @@
 {
-  "name": "@abeidahmed/tailwindcss-elements",
+  "name": "tailwindcss-elements",
   "version": "0.0.1",
   "description": "A set of accessible custom elements that pairs beautifully with Tailwind CSS.",
   "author": "abeidahmed",
@@ -22,7 +22,22 @@
       "import": "./dist/index.js",
       "require": "./dist/index.umd.js"
     },
-    "./dist/elements/*": "./dist/elements/*"
+    "./elements/dialog": {
+      "types": "./dist/elements/dialog/index.d.ts",
+      "default": "./dist/elements/dialog/index.js"
+    },
+    "./elements/dropdown": {
+      "types": "./dist/elements/dropdown/index.d.ts",
+      "default": "./dist/elements/dropdown/index.js"
+    },
+    "./elements/popover": {
+      "types": "./dist/elements/popover/index.d.ts",
+      "default": "./dist/elements/popover/index.js"
+    },
+    "./elements/switch": {
+      "types": "./dist/elements/switch/index.d.ts",
+      "default": "./dist/elements/switch/index.js"
+    }
   },
   "files": [
     "dist",

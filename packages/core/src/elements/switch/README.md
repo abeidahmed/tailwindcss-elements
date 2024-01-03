@@ -6,7 +6,7 @@ navigation as native checkbox elements.
 ## Imports
 
 ```js
-import '@abeidahmed/tailwindcss-elements/dist/elements/switch';
+import 'tailwindcss-elements/elements/switch';
 ```
 
 ## Usage

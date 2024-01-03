@@ -5,7 +5,7 @@ A dialog component that uses the native `<dialog>` element to interrupt interact
 ## Imports
 
 ```js
-import '@abeidahmed/tailwindcss-elements/dist/elements/dialog';
+import 'tailwindcss-elements/elements/dialog';
 ```
 
 ## Usage

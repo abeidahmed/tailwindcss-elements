@@ -1,5 +1,5 @@
-import '@abeidahmed/tailwindcss-elements';
-import DialogElement from '@abeidahmed/tailwindcss-elements/dist/elements/dialog';
+import 'tailwindcss-elements';
+import DialogElement from 'tailwindcss-elements/elements/dialog';
 
 function openDialog(event: Event) {
   const trigger = event.target as HTMLButtonElement;

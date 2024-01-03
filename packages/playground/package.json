@@ -1,5 +1,5 @@
 {
-  "name": "@abeidahmed/playground",
+  "name": "playground",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@abeidahmed/tailwindcss-elements": "^*",
+    "tailwindcss-elements": "^*",
     "vite": "^5.0.8"
   }
 }
