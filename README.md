@@ -5,27 +5,27 @@ A set of accessible custom elements that pairs beautifully with Tailwind CSS.
 ## Installation
 
 ```bash
-yarn add @abeidahmed/tailwindcss-elements
+yarn add tailwindcss-elements
 ```
 
 or
 
 ```bash
-npm install @abeidahmed/tailwindcss-elements
+npm install tailwindcss-elements
 ```
 
-## Importing components
+## Importing elements
 
 ```js
-// Imports all the components
-import '@abeidahmed/tailwindcss-elements';
+// Imports all the elements
+import 'tailwindcss-elements';
 
-// or, cherry pick what you need
-import '@abeidahmed/tailwindcss-elements/dist/elements/dialog';
-import '@abeidahmed/tailwindcss-elements/dist/elements/dropdown';
+// Or, cherry pick what you need
+import 'tailwindcss-elements/elements/dialog';
+import 'tailwindcss-elements/elements/dropdown';
 ```
 
-## Components
+## Custom elements
 
 - [Dialog](./packages/core/src/elements/dialog/README.md)
 - [Dropdown](./packages/core/src/elements/dropdown/README.md)

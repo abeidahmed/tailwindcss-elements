@@ -5,7 +5,7 @@ A popover can contain any arbitrary content that is triggered by a button.
 ## Imports
 
 ```js
-import '@abeidahmed/tailwindcss-elements/dist/elements/popover';
+import 'tailwindcss-elements/elements/popover';
 ```
 
 ## Usage
