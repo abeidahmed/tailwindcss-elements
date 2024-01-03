@@ -29,7 +29,7 @@ button.addEventListener('click', openDialog);
 
 ## Examples
 
-### Programatically toggling the visiblity state
+### Programmatically toggling the visiblity state
 
 ```html
 <twc-dialog>
@@ -94,6 +94,6 @@ plugin to target this attribute.
 
 ## Events
 
-| Name   | Bubbles   | Description                                                      |
-| ------ | --------- | ------------                                                     |
-| `hide` | `false`   | This event fires when the dialog is hidden via user interaction. |
+| Name                | Bubbles   | Description                                                      |
+| ------              | --------- | ------------                                                     |
+| `twc-dialog:hidden` | `true`    | This event fires when the dialog is hidden via user interaction. |

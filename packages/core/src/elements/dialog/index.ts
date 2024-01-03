@@ -52,7 +52,7 @@ export default class DialogElement extends ImpulseElement {
    */
   hide() {
     this.open = false;
-    this.emit('hide', { bubbles: false, prefix: false });
+    this.emit('hidden');
   }
 
   private showModal() {
@@ -84,14 +84,14 @@ export default class DialogElement extends ImpulseElement {
       return;
     }
     this.open = false;
-    this.emit('hide', { bubbles: false, prefix: false });
+    this.emit('hidden');
   }
 
   private handleKeydown(event: KeyboardEvent) {
     // Avoid parent popovers from being closed.
     if (event.key === 'Escape') {
       event.stopPropagation();
-      this.emit('hide', { bubbles: false, prefix: false });
+      this.emit('hidden');
     }
   }
 

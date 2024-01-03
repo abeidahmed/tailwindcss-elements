@@ -55,8 +55,8 @@ describe('Dialog', async () => {
         <dialog data-target="twc-dialog.dialog">Contents</dialog>
       </twc-dialog>
     `);
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const dialog = el.querySelector('dialog')!;
 
@@ -65,10 +65,10 @@ describe('Dialog', async () => {
 
     await sendMouse({ type: 'click', position: [0, 0] });
     assertDialogHidden(el, dialog);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
-  it('closes the dialog and emits a hide event when hide the action is called', async () => {
+  it('closes the dialog and emits a hidden event when hide the action is called', async () => {
     const el = await fixture<DialogElement>(html`
       <twc-dialog>
         <dialog data-target="twc-dialog.dialog">
@@ -76,8 +76,8 @@ describe('Dialog', async () => {
         </dialog>
       </twc-dialog>
     `);
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const dialog = el.querySelector('dialog')!;
     const closeButton = el.querySelector('button')!;
@@ -87,17 +87,17 @@ describe('Dialog', async () => {
 
     closeButton.click();
     assertDialogHidden(el, dialog);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
-  it('emits a hide event when Escape key is pressed', async () => {
+  it('emits a hidden event when Escape key is pressed', async () => {
     const el = await fixture<DialogElement>(html`
       <twc-dialog>
         <dialog data-target="twc-dialog.dialog">Contents</dialog>
       </twc-dialog>
     `);
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddeHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddeHandler);
 
     const dialog = el.querySelector('dialog')!;
 
@@ -105,7 +105,7 @@ describe('Dialog', async () => {
     assertDialogShown(el, dialog);
 
     await sendKeys({ press: 'Escape' });
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddeHandler.calledOnce).to.be.true;
   });
 
   it('closes the dialogs in order when clicked outside', async () => {

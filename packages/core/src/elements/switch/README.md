@@ -39,7 +39,7 @@ You can set the `checked` attribute on the element and it will be checked by def
 </twc-switch>
 ```
 
-### Programatically toggling the checked state
+### Programmatically toggling the checked state
 
 ```html
 <twc-switch>
@@ -65,6 +65,6 @@ plugin to target this attribute.
 
 ## Events
 
-| Name     | Bubbles   | Description                                                              |
-| ------   | --------- | ------------                                                             |
-| `change` | `false`   | This event fires when the switch is toggled on/off via user interaction. |
+| Name                 | Bubbles   | Description                                                              |
+| ------               | --------- | ------------                                                             |
+| `twc-switch:changed` | `true`    | This event fires when the switch is toggled on/off via user interaction. |

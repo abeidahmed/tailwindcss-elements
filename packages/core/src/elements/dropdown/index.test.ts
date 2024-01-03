@@ -70,11 +70,11 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
@@ -85,12 +85,12 @@ describe('Dropdown', () => {
     assertDropdownShown(el, trigger, menu);
     expect(menu).not.to.have.attribute('aria-activedescendant');
     expect(document.activeElement).to.eq(menu);
-    expect(showHandler.calledOnce).to.be.true;
+    expect(shownHandler.calledOnce).to.be.true;
 
     trigger.click();
     assertDropdownHidden(el, trigger, menu);
     expect(document.activeElement).to.eq(trigger);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('activates the first menu item by opening the dropdown with an Enter/Space/ArrowDown key', async () => {
@@ -102,11 +102,11 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
@@ -118,27 +118,27 @@ describe('Dropdown', () => {
     assertDropdownShown(el, trigger, menu);
     assertActiveMenuItem(activeMenuItem);
     expect(document.activeElement).to.eq(menu);
-    expect(showHandler.calledOnce).to.be.true;
+    expect(shownHandler.calledOnce).to.be.true;
 
     trigger.click();
     assertDropdownHidden(el, trigger, menu);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
 
     await sendKeys({ press: ' ' });
     assertDropdownShown(el, trigger, menu);
     assertActiveMenuItem(activeMenuItem);
     expect(document.activeElement).to.eq(menu);
-    expect(showHandler.callCount).to.eq(2);
+    expect(shownHandler.callCount).to.eq(2);
 
     trigger.click();
     assertDropdownHidden(el, trigger, menu);
-    expect(hideHandler.called).to.be.true;
+    expect(hiddenHandler.called).to.be.true;
 
     await sendKeys({ press: 'ArrowDown' });
     assertDropdownShown(el, trigger, menu);
     assertActiveMenuItem(activeMenuItem);
     expect(document.activeElement).to.eq(menu);
-    expect(showHandler.callCount).to.eq(3);
+    expect(shownHandler.callCount).to.eq(3);
   });
 
   it('activates the last menu item by opening the dropdown with an ArrowUp key', async () => {
@@ -151,8 +151,8 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
@@ -164,7 +164,7 @@ describe('Dropdown', () => {
     assertDropdownShown(el, trigger, menu);
     assertActiveMenuItem(activeMenuItem);
     expect(document.activeElement).to.eq(menu);
-    expect(showHandler.calledOnce).to.be.true;
+    expect(shownHandler.calledOnce).to.be.true;
   });
 
   it('activates the first non-disabled menu item by opening the dropdown with an Enter/Space/ArrowDown key', async () => {
@@ -240,8 +240,8 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
@@ -252,7 +252,7 @@ describe('Dropdown', () => {
     await sendKeys({ press: 'Escape' });
     assertDropdownHidden(el, trigger, menu);
     expect(document.activeElement).to.eq(trigger);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('hides the dropdown on outside click', async () => {
@@ -264,8 +264,8 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const hideHandler = Sinon.spy();
-    el.addEventListener('hide', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
@@ -276,7 +276,7 @@ describe('Dropdown', () => {
     await sendMouse({ type: 'click', position: [0, 0] });
     assertDropdownHidden(el, trigger, menu);
     expect(document.activeElement).to.eq(trigger);
-    expect(hideHandler.calledOnce).to.be.true;
+    expect(hiddenHandler.calledOnce).to.be.true;
   });
 
   it('cycles through the menu items by pressing the ArrowDown and ArrowUp keys', async () => {
@@ -328,8 +328,8 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const changeHandler = Sinon.spy();
-    el.addEventListener('change', changeHandler);
+    const changedHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:changed`, changedHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
@@ -340,30 +340,30 @@ describe('Dropdown', () => {
 
     el.activateMenuItem(menuItems[0]);
     menuItems[0].click();
-    expect(changeHandler.calledOnce).to.be.true;
-    expect(changeHandler.getCall(0).args[0].detail.relatedTarget).to.eq(menuItems[0]);
+    expect(changedHandler.calledOnce).to.be.true;
+    expect(changedHandler.getCall(0).args[0].detail.relatedTarget).to.eq(menuItems[0]);
 
     // Event is not fired for disabled menu items.
     trigger.click();
-    changeHandler.resetHistory();
+    changedHandler.resetHistory();
     el.activateMenuItem(menuItems[1]);
     menuItems[1].click();
-    expect(changeHandler.called).to.be.false;
+    expect(changedHandler.called).to.be.false;
 
-    changeHandler.resetHistory();
+    changedHandler.resetHistory();
     trigger.click();
     el.activateMenuItem(menuItems[2]);
     menuItems[2].click();
-    expect(changeHandler.calledOnce).to.be.true;
-    expect(changeHandler.getCall(0).args[0].detail.relatedTarget).to.eq(menuItems[2]);
+    expect(changedHandler.calledOnce).to.be.true;
+    expect(changedHandler.getCall(0).args[0].detail.relatedTarget).to.eq(menuItems[2]);
 
-    changeHandler.resetHistory();
+    changedHandler.resetHistory();
     trigger.click();
     await sendKeys({ press: 'ArrowDown' });
     assertActiveMenuItem(menuItems[0]);
     await sendKeys({ press: 'Enter' });
-    expect(changeHandler.calledOnce).to.be.true;
-    expect(changeHandler.getCall(0).args[0].detail.relatedTarget).to.eq(menuItems[0]);
+    expect(changedHandler.calledOnce).to.be.true;
+    expect(changedHandler.getCall(0).args[0].detail.relatedTarget).to.eq(menuItems[0]);
   });
 
   it('closes the menu and focuses on the trigger after clicking on the menu item', async () => {
@@ -406,7 +406,7 @@ describe('Dropdown', () => {
     expect(document.activeElement).to.eq(trigger);
   });
 
-  it('toggles the visibility of the menu programatically', async () => {
+  it('toggles the visibility of the menu programmatically', async () => {
     const el = await fixture<DropdownElement>(html`
       <twc-dropdown>
         <button type="button" data-target="twc-dropdown.trigger">Button</button>
@@ -415,22 +415,22 @@ describe('Dropdown', () => {
         </div>
       </twc-dropdown>
     `);
-    const showHandler = Sinon.spy();
-    el.addEventListener('show', showHandler);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
 
-    const hideHandler = Sinon.spy();
-    el.addEventListener('show', hideHandler);
+    const hiddenHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, hiddenHandler);
 
     const trigger = el.querySelector('button')!;
     const menu = el.querySelector('div')!;
 
     el.open = true;
     assertDropdownShown(el, trigger, menu);
-    expect(showHandler.called).to.be.false;
+    expect(shownHandler.called).to.be.false;
 
     el.open = false;
     assertDropdownHidden(el, trigger, menu);
-    expect(hideHandler.called).to.be.false;
+    expect(hiddenHandler.called).to.be.false;
   });
 
   it('menuItemActive returns true/false if the menu item is active or inactive', async () => {

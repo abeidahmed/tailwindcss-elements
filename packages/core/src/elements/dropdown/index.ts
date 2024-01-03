@@ -43,7 +43,7 @@ export default class DropdownElement extends ImpulseElement {
             event.preventDefault();
             this.trigger.focus();
           }
-          this.emit('hide', { bubbles: false, prefix: false });
+          this.emit('hidden');
         }
       },
     });
@@ -119,10 +119,10 @@ export default class DropdownElement extends ImpulseElement {
     if (this.open) {
       this.open = false;
       this.trigger.focus();
-      this.emit('hide', { bubbles: false, prefix: false });
+      this.emit('hidden');
     } else {
       this.openAndTrapFocus();
-      this.emit('show', { bubbles: false, prefix: false });
+      this.emit('shown');
     }
   }
 
@@ -136,7 +136,7 @@ export default class DropdownElement extends ImpulseElement {
           event.stopPropagation();
           this.open = false;
           this.trigger.focus();
-          this.emit('hide', { bubbles: false, prefix: false });
+          this.emit('hidden');
         }
         break;
       }
@@ -149,7 +149,7 @@ export default class DropdownElement extends ImpulseElement {
           if (firstMenuItem) {
             this.activateMenuItem(firstMenuItem);
           }
-          this.emit('show', { bubbles: false, prefix: false });
+          this.emit('shown');
           return;
         }
 
@@ -167,7 +167,7 @@ export default class DropdownElement extends ImpulseElement {
           if (firstMenuItem) {
             this.activateMenuItem(firstMenuItem);
           }
-          this.emit('show', { bubbles: false, prefix: false });
+          this.emit('shown');
           return;
         }
 
@@ -191,7 +191,7 @@ export default class DropdownElement extends ImpulseElement {
           if (lastMenuItem) {
             this.activateMenuItem(lastMenuItem);
           }
-          this.emit('show', { bubbles: false, prefix: false });
+          this.emit('shown');
           return;
         }
 
@@ -253,7 +253,7 @@ export default class DropdownElement extends ImpulseElement {
       menuItem.click();
       this.open = false;
       this.trigger.focus();
-      this.emit('change', { bubbles: false, prefix: false, detail: { relatedTarget: menuItem } });
+      this.emit('changed', { detail: { relatedTarget: menuItem } });
     }
   }
 
