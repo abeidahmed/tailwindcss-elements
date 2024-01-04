@@ -17,6 +17,13 @@ export default class DialogElement extends ImpulseElement {
   }
 
   /**
+   * Called when the element is removed from the DOM.
+   */
+  disconnected() {
+    this.open = false;
+  }
+
+  /**
    * Called when the `open` property changes.
    */
   openChanged(value: boolean) {

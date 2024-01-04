@@ -8,11 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Emit `twc-switch:change` cancelable event before toggling the switch.
+- Emit `twc-switch:change` cancelable event before toggling the switch
 
 ### Changed
 
 - Change `uniqueId` prefix to `twc`
+
+### Fixed
+
+- Hide dialog element before Turbo caches the page
 
 ## [0.0.1] - 2024-01-04
 
