@@ -65,6 +65,7 @@ plugin to target this attribute.
 
 ## Events
 
-| Name                 | Bubbles   | Description                                                              |
-| ------               | --------- | ------------                                                             |
-| `twc-switch:changed` | `true`    | This event fires when the switch is toggled on/off via user interaction. |
+| Name                 | Bubbles   | Cancelable | Description                                                                |
+| ------               | --------- | ---------  | ------------                                                               |
+| `twc-switch:change`  | `true`    | `true`     | This event fires before the switch is toggled on/off via user interaction. |
+| `twc-switch:changed` | `true`    | `false`    | This event fires when the switch is toggled on/off via user interaction.   |

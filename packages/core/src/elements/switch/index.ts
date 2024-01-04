@@ -41,6 +41,9 @@ export default class SwitchElement extends ImpulseElement {
   }
 
   private handleToggle() {
+    const changeEvent = this.emit('change', { cancelable: true });
+    if (changeEvent.defaultPrevented) return;
+
     this.checked = !this.checked;
     this.emit('changed');
   }
