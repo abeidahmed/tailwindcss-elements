@@ -103,6 +103,28 @@
         </div>
       </twc-popover>
     </div>
+
+    <div class="mt-8">
+      <twc-tabs>
+        <twc-tabs-list>
+          <button type="button" data-target="twc-tabs.triggers" aria-controls="panel1">Tab 1</button>
+          <button type="button" data-target="twc-tabs.triggers" aria-controls="panel2" data-headlessui-state="selected">
+            Tab 2
+          </button>
+          <button type="button" data-target="twc-tabs.triggers" aria-controls="panel3">Tab 3</button>
+        </twc-tabs-list>
+
+        <div id="panel1" data-target="twc-tabs.panels" class="hidden data-[headlessui-state='selected']:block">
+          Panel 1
+        </div>
+        <div id="panel2" data-target="twc-tabs.panels" class="hidden data-[headlessui-state='selected']:block">
+          Panel 2
+        </div>
+        <div id="panel3" data-target="twc-tabs.panels" class="hidden data-[headlessui-state='selected']:block">
+          Panel 3
+        </div>
+      </twc-tabs>
+    </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

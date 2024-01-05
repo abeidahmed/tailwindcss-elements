@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Add Tabs element
 - Emit `twc-switch:change` cancelable event before toggling the switch
 
 ### Changed
