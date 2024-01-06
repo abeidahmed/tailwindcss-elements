@@ -26,6 +26,8 @@ import 'tailwindcss-elements/elements/tabs';
 </twc-tabs>
 ```
 
+[![Edit Tabs](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/dropdown-forked-6n8vhz)
+
 ## Examples
 
 ### Specifying the default tab that is selected

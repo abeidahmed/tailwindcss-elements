@@ -27,6 +27,8 @@ const button = document.querySelector('button');
 button.addEventListener('click', openDialog);
 ```
 
+[![Edit Dialog](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/dialog-6gyqxk)
+
 ## Examples
 
 ### Programmatically toggling the visiblity state

@@ -21,6 +21,8 @@ import 'tailwindcss-elements/elements/dropdown';
 </twc-dropdown>
 ```
 
+[![Edit Dropdown](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/dropdown-k3yh6f)
+
 ## Examples
 
 ### Programmatically toggling the visibility state
