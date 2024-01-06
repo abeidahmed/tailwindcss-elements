@@ -1,4 +1,5 @@
 import { ImpulseElement, property, registerElement, target } from '@ambiki/impulse';
+import { setSafeAttribute } from '../../helpers/dom';
 
 @registerElement('twc-switch')
 export default class SwitchElement extends ImpulseElement {
@@ -19,9 +20,7 @@ export default class SwitchElement extends ImpulseElement {
    */
   triggerConnected(trigger: HTMLButtonElement) {
     trigger.setAttribute('role', 'switch');
-    if (!trigger.hasAttribute('tabindex')) {
-      trigger.setAttribute('tabindex', '0');
-    }
+    setSafeAttribute(trigger, 'tabindex', '0');
     this.syncState(this.checked);
     trigger.addEventListener('click', this.handleToggle);
   }
