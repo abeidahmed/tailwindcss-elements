@@ -27,6 +27,8 @@ import 'tailwindcss-elements/elements/switch';
 </twc-switch>
 ```
 
+[![Edit Switch](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/switch-tphw3w)
+
 ## Examples
 
 ### Default to the checked state

@@ -19,6 +19,8 @@ import 'tailwindcss-elements/elements/popover';
 </twc-popover>
 ```
 
+[![Edit Popover](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/popover-yyvw2d)
+
 ## Examples
 
 ### Default to the open state
