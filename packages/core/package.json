@@ -37,6 +37,10 @@
     "./elements/switch": {
       "types": "./dist/elements/switch/index.d.ts",
       "default": "./dist/elements/switch/index.js"
+    },
+    "./elements/tabs": {
+      "types": "./dist/elements/tabs/index.d.ts",
+      "default": "./dist/elements/tabs/index.js"
     }
   },
   "files": [
