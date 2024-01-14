@@ -62,6 +62,26 @@ describe('Dropdown', () => {
     }
   });
 
+  it('shows the dropdown initially if the open attribute is present', async () => {
+    const el = await fixture<DropdownElement>(html`
+      <twc-dropdown open>
+        <button type="button" data-target="twc-dropdown.trigger">Button</button>
+        <div data-target="twc-dropdown.menu">
+          <a href="#" data-target="twc-dropdown.menuItems"></a>
+        </div>
+      </twc-dropdown>
+    `);
+    const shownHandler = Sinon.spy();
+    el.addEventListener(`${el.identifier}:shown`, shownHandler);
+
+    const trigger = el.querySelector('button')!;
+    const menu = el.querySelector('div')!;
+
+    assertDropdownShown(el, trigger, menu);
+    expect(shownHandler.called).to.be.false;
+    expect(document.activeElement).to.eq(document.body);
+  });
+
   it('toggles the visibility of the dropdown', async () => {
     const el = await fixture<DropdownElement>(html`
       <twc-dropdown>
