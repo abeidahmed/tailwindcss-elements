@@ -84,6 +84,22 @@ will close the parent popover.
 </twc-popover>
 ```
 
+### Positioning the panel
+
+By default, the positioning logic is not taken care of when you use the `twc-popover` element. But, you can do so by
+wrapping the trigger and panel with the [`twc-floating-panel`](../floating_panel/README.md) element.
+
+```html
+<twc-popover class="relative">
+  <twc-floating-panel>
+    <button data-target="twc-popover.trigger twc-floating-panel.trigger" type="button">Toggle popover</button>
+    <div data-target="twc-popover.panel twc-floating-panel.panel" class="absolute hidden data-[headlessui-state='open']:block">
+      Popover contents!
+    </div>
+  </twc-floating-panel>
+</twc-popover>
+```
+
 ## Styling different states
 
 Each component exposes the `data-headlessui-state` attribute that you can use to conditionally apply the classes. You

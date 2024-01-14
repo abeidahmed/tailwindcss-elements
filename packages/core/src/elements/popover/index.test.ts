@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import Sinon from 'sinon';
+import FloatingPanelElement from '../floating_panel';
 import PopoverElement from './index';
 
 function assertPopoverShown(el: PopoverElement, trigger: HTMLButtonElement, panel: Element) {
@@ -241,5 +242,24 @@ describe('Popover', () => {
     });
     assertPopoverHidden(el, trigger, panel);
     assertPopoverHidden(nestedEl, nestedTrigger, nestedPanel);
+  });
+
+  it('starts and stops the positioning logic', async () => {
+    const el = await fixture<PopoverElement>(html`
+      <twc-popover>
+        <twc-floating-panel>
+          <button type="button" data-target="twc-popover.trigger twc-floating-panel.trigger">Toggle</button>
+          <div data-target="twc-popover.panel twc-floating-panel.panel"></div>
+        </twc-floating-panel>
+      </twc-popover>
+    `);
+
+    const floatingPanel = el.querySelector('twc-floating-panel')! as FloatingPanelElement;
+
+    el.open = true;
+    expect(floatingPanel).to.have.attribute('active');
+
+    el.open = false;
+    expect(floatingPanel).not.to.have.attribute('active');
   });
 });

@@ -64,9 +64,15 @@ export default class PopoverElement extends ImpulseElement {
   openChanged(value: boolean) {
     if (value) {
       this.syncState(true);
+      if (this.floatingPanel) {
+        this.floatingPanel.active = true;
+      }
     } else {
       this._focusTrap?.abort();
       this.syncState(false);
+      if (this.floatingPanel) {
+        this.floatingPanel.active = false;
+      }
     }
   }
 
@@ -142,6 +148,10 @@ export default class PopoverElement extends ImpulseElement {
       this.trigger.focus();
       this.emit('hidden');
     }
+  }
+
+  get floatingPanel() {
+    return this.querySelector('twc-floating-panel');
   }
 
   private syncState(state: boolean) {

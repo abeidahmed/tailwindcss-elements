@@ -43,6 +43,24 @@ element.open = true;
 element.open = false;
 ```
 
+### Positioning the panel
+
+By default, the positioning logic is not taken care of when you use the `twc-dropdown` element. But, you can do so by
+wrapping the trigger and panel with the [`twc-floating-panel`](../floating_panel/README.md) element.
+
+```html
+<twc-dropdown class="relative">
+  <twc-floating-panel>
+    <button type="button" data-target="twc-dropdown.trigger twc-floating-panel.trigger">Toggle dropdown</button>
+    <div data-target="twc-dropdown.menu twc-floating-panel.panel" class="absolute hidden data-[headlessui-state='open']:block">
+      <a href="/dashboard" data-target="twc-dropdown.menuItems">Dashboard</a>
+      <a href="/settings" data-target="twc-dropdown.menuItems">Settings</a>
+      <a href="/profile" data-target="twc-dropdown.menuItems">Profile</a>
+    </div>
+  </twc-floating-panel>
+</twc-dropdown>
+```
+
 ## Styling different states
 
 Each component exposes the `data-headlessui-state` attribute that you can use to conditionally apply the classes. You

@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import Sinon from 'sinon';
+import FloatingPanelElement from '../floating_panel';
 import DropdownElement from './index';
 
 function assertDropdownShown(el: DropdownElement, trigger: Element, menu: Element) {
@@ -488,5 +489,26 @@ describe('Dropdown', () => {
 
     el.deactivateAllMenuItems();
     expect(el.activeMenuItem).to.be.undefined;
+  });
+
+  it('starts and stops the positioning logic', async () => {
+    const el = await fixture<DropdownElement>(html`
+      <twc-dropdown>
+        <twc-floating-panel>
+          <button type="button" data-target="twc-dropdown.trigger twc-floating-panel.trigger">Button</button>
+          <div data-target="twc-dropdown.menu twc-floating-panel.panel">
+            <a href="#" data-target="twc-dropdown.menuItems">First</a>
+          </div>
+        </twc-floating-panel>
+      </twc-dropdown>
+    `);
+
+    const floatingPanel = el.querySelector('twc-floating-panel')! as FloatingPanelElement;
+
+    el.open = true;
+    expect(floatingPanel).to.have.attribute('active');
+
+    el.open = false;
+    expect(floatingPanel).not.to.have.attribute('active');
   });
 });

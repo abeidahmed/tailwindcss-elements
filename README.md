@@ -29,6 +29,7 @@ import 'tailwindcss-elements/elements/dropdown';
 
 - [Dialog](./packages/core/src/elements/dialog/README.md)
 - [Dropdown](./packages/core/src/elements/dropdown/README.md)
+- [Floating panel](./packages/core/src/elements/floating_panel/README.md)
 - [Popover](./packages/core/src/elements/popover/README.md)
 - [Switch](./packages/core/src/elements/switch/README.md)
 - [Tabs](./packages/core/src/elements/tabs/README.md)
