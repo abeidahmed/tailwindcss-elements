@@ -9,7 +9,7 @@ import { isDisabled } from '../../helpers/dom';
 @registerElement('twc-dropdown')
 export default class DropdownElement extends ImpulseElement {
   /**
-   * Whether the dropdown is open or not. To make the popover open by default, set the `open` attribute.
+   * Whether the dropdown is open or not. To make the dropdown open by default, set the `open` attribute.
    */
   @property({ type: Boolean }) open = false;
 
@@ -47,6 +47,11 @@ export default class DropdownElement extends ImpulseElement {
         }
       },
     });
+
+    // If the dropdown is initially open we only want to change the attributes without trapping the focus.
+    if (this.open) {
+      this.syncState(true);
+    }
   }
 
   disconnected() {
