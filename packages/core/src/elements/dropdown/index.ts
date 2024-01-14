@@ -56,12 +56,18 @@ export default class DropdownElement extends ImpulseElement {
 
   openChanged(value: boolean) {
     if (value) {
+      if (this.floatingPanel) {
+        this.floatingPanel.active = true;
+      }
       this.syncState(true);
     } else {
       this._focusTrap?.abort();
       this.syncState(false);
       this.menu.removeAttribute('aria-activedescendant');
       this.deactivateAllMenuItems();
+      if (this.floatingPanel) {
+        this.floatingPanel.active = false;
+      }
     }
   }
 
@@ -292,6 +298,10 @@ export default class DropdownElement extends ImpulseElement {
 
   get interactableMenuItems() {
     return this.menuItems.filter((menuItem) => !isDisabled(menuItem));
+  }
+
+  get floatingPanel() {
+    return this.querySelector('twc-floating-panel');
   }
 
   private syncState(state: boolean) {

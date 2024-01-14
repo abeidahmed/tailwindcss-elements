@@ -4,7 +4,7 @@ import { esbuildPlugin } from '@web/dev-server-esbuild';
 export default {
   rootDir: './packages/core',
   files: ['./packages/**/*.test.ts'],
-  concurrentBrowsers: 3,
+  concurrency: 1,
   nodeResolve: true,
   preserveSymlinks: true,
   testRunnerHtml: (testFramework) => `
