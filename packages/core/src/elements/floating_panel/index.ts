@@ -6,6 +6,7 @@ import {
   Placement,
   ShiftOptions,
   Strategy,
+  VirtualElement,
   autoUpdate,
   computePosition,
   flip,
@@ -61,9 +62,10 @@ export default class FloatingPanelElement extends ImpulseElement {
    */
   @property() sync?: 'width' | 'height' | 'both';
 
-  @target() trigger: HTMLElement;
+  @target() trigger?: HTMLElement;
   @target() panel: HTMLElement;
 
+  private _virtualTrigger: Element | VirtualElement | null;
   private cleanup?: ReturnType<typeof autoUpdate>;
 
   connected() {
@@ -87,24 +89,34 @@ export default class FloatingPanelElement extends ImpulseElement {
     this.panel.style.top = '0px';
     this.panel.style.left = '0px';
 
-    this.cleanup = autoUpdate(this.trigger, this.panel, this.position.bind(this));
+    if (this.virtualOrElementTrigger) {
+      this.cleanup = autoUpdate(this.virtualOrElementTrigger, this.panel, this.position.bind(this));
+    }
   }
 
-  async stop(): Promise<void> {
+  async stop(event?: Event): Promise<void> {
     return new Promise((resolve) => {
       if (this.cleanup) {
         this.cleanup();
         this.cleanup = undefined;
         this.removeAttribute('data-current-placement');
         requestAnimationFrame(() => resolve());
+        // Fire event if the action was invoked via a user interaction.
+        if (event) {
+          this.emit('stopped');
+        }
       } else {
         resolve();
+        // Fire event if the action was invoked via a user interaction.
+        if (event) {
+          this.emit('stopped');
+        }
       }
     });
   }
 
   async position() {
-    if (!this.active) return;
+    if (!this.active || !this.virtualOrElementTrigger) return;
 
     const middleware: Middleware[] = [offset(presence(this.offsetOptions))];
 
@@ -132,7 +144,7 @@ export default class FloatingPanelElement extends ImpulseElement {
         ? (element: Element) => platform.getOffsetParent(element, offsetParent)
         : platform.getOffsetParent;
 
-    const { x, y, strategy, placement } = await computePosition(this.trigger, this.panel, {
+    const { x, y, strategy, placement } = await computePosition(this.virtualOrElementTrigger, this.panel, {
       placement: this.placement,
       middleware,
       strategy: this.strategy,
@@ -150,6 +162,18 @@ export default class FloatingPanelElement extends ImpulseElement {
 
     this.setAttribute('data-current-placement', placement);
     this.emit('changed');
+  }
+
+  /**
+   * Sets the virtual element as the trigger.
+   * @see https://floating-ui.com/docs/virtual-elements
+   */
+  set virtualTrigger(object: VirtualElement) {
+    this._virtualTrigger = object;
+  }
+
+  private get virtualOrElementTrigger() {
+    return this._virtualTrigger || this.trigger;
   }
 }
 
