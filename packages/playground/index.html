@@ -127,6 +127,20 @@
         </div>
       </twc-tabs>
     </div>
+
+    <div class="mt-8">
+      <h2>Floating panel with trigger id</h2>
+      <div class="mt-2">
+        <button type="button" id="trigger-id-1">Button 1</button>
+        <button type="button" id="trigger-id-2">Button 2</button>
+
+        <twc-floating-panel trigger-id="trigger-id-1" active placement="bottom">
+          <div data-target="twc-floating-panel.panel" class="bg-white rounded shadow p-4 border">
+            Floating contents!
+          </div>
+        </twc-floating-panel>
+      </div>
+    </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

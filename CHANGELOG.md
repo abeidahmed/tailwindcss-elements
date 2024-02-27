@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Allow trigger id to be set in the Floating panel element
+
 ## [0.2.0] - 2024-01-14
 
 ### Added

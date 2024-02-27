@@ -30,6 +30,11 @@ export default class FloatingPanelElement extends ImpulseElement {
   @property({ type: Boolean }) active = false;
 
   /**
+   * If the trigger lives outside the floating panel, you can set the trigger element's id.
+   */
+  @property() triggerId: string;
+
+  /**
    * One of 'absolute' or 'fixed'.
    * https://floating-ui.com/docs/computeposition#strategy
    */
@@ -61,7 +66,7 @@ export default class FloatingPanelElement extends ImpulseElement {
    */
   @property() sync?: 'width' | 'height' | 'both';
 
-  @target() trigger: HTMLElement;
+  @target() trigger?: HTMLElement;
   @target() panel: HTMLElement;
 
   private cleanup?: ReturnType<typeof autoUpdate>;
@@ -82,12 +87,21 @@ export default class FloatingPanelElement extends ImpulseElement {
     }
   }
 
+  /**
+   * We want to restart the placement logic when the trigger id changes.
+   */
+  async triggerIdChanged() {
+    await this.stop();
+    this.start();
+  }
+
   start() {
+    if (!this.triggerElement) return;
     this.panel.style.position = this.strategy;
     this.panel.style.top = '0px';
     this.panel.style.left = '0px';
 
-    this.cleanup = autoUpdate(this.trigger, this.panel, this.position.bind(this));
+    this.cleanup = autoUpdate(this.triggerElement, this.panel, this.position.bind(this));
   }
 
   async stop(): Promise<void> {
@@ -104,7 +118,7 @@ export default class FloatingPanelElement extends ImpulseElement {
   }
 
   async position() {
-    if (!this.active) return;
+    if (!this.active || !this.triggerElement) return;
 
     const middleware: Middleware[] = [offset(presence(this.offsetOptions))];
 
@@ -132,7 +146,7 @@ export default class FloatingPanelElement extends ImpulseElement {
         ? (element: Element) => platform.getOffsetParent(element, offsetParent)
         : platform.getOffsetParent;
 
-    const { x, y, strategy, placement } = await computePosition(this.trigger, this.panel, {
+    const { x, y, strategy, placement } = await computePosition(this.triggerElement, this.panel, {
       placement: this.placement,
       middleware,
       strategy: this.strategy,
@@ -150,6 +164,10 @@ export default class FloatingPanelElement extends ImpulseElement {
 
     this.setAttribute('data-current-placement', placement);
     this.emit('changed');
+  }
+
+  private get triggerElement() {
+    return document.getElementById(this.triggerId) || this.trigger;
   }
 }
 
