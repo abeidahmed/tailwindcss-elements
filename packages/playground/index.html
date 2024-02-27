@@ -25,22 +25,28 @@
 
     <div>
       <twc-popover class="relative">
-        <button type="button" data-target="twc-popover.trigger">Toggle</button>
-        <div
-          data-target="twc-popover.panel"
-          class="hidden absolute w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
-        >
-          <p>This is a popover</p>
-          <twc-popover class="relative">
-            <button type="button" data-target="twc-popover.trigger">Toggle nested</button>
+        <twc-floating-panel placement="top" offset-options="8">
+          <button type="button" data-target="twc-popover.trigger twc-floating-panel.trigger">Toggle</button>
+          <div
+            data-target="twc-popover.panel twc-floating-panel.panel"
+            class="group z-10 hidden w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
+          >
             <div
-              data-target="twc-popover.panel"
-              class="hidden absolute w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
-            >
-              <p>Nested popover</p>
-            </div>
-          </twc-popover>
-        </div>
+              class="absolute h-0 w-0 border-x-[10px] border-x-transparent border-t-[10px] border-t-white group-data-[current-placement^='top']:-bottom-2 group-data-[current-placement^='bottom']:-top-2 group-data-[current-placement^='right']:-left-2 group-data-[current-placement^='left']:-right-2"
+              data-target="twc-floating-panel.arrow"
+            ></div>
+            <p>This is a popover</p>
+            <twc-popover class="relative">
+              <button type="button" data-target="twc-popover.trigger">Toggle nested</button>
+              <div
+                data-target="twc-popover.panel"
+                class="hidden absolute w-64 p-4 bg-white border rounded shadow-lg data-[headlessui-state='open']:block"
+              >
+                <p>Nested popover</p>
+              </div>
+            </twc-popover>
+          </div>
+        </twc-floating-panel>
       </twc-popover>
     </div>
 

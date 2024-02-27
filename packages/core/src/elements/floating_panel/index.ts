@@ -6,6 +6,7 @@ import {
   Placement,
   ShiftOptions,
   Strategy,
+  arrow,
   autoUpdate,
   computePosition,
   flip,
@@ -68,6 +69,7 @@ export default class FloatingPanelElement extends ImpulseElement {
 
   @target() trigger?: HTMLElement;
   @target() panel: HTMLElement;
+  @target() arrow?: HTMLElement;
 
   private cleanup?: ReturnType<typeof autoUpdate>;
 
@@ -109,7 +111,7 @@ export default class FloatingPanelElement extends ImpulseElement {
       if (this.cleanup) {
         this.cleanup();
         this.cleanup = undefined;
-        this.removeAttribute('data-current-placement');
+        this.setCurrentPlacement('');
         requestAnimationFrame(() => resolve());
       } else {
         resolve();
@@ -141,12 +143,20 @@ export default class FloatingPanelElement extends ImpulseElement {
     middleware.push(flip(presence(this.flipOptions)));
     middleware.push(shift(presence(this.shiftOptions)));
 
+    if (this.arrow) {
+      middleware.push(
+        arrow({
+          element: this.arrow,
+        })
+      );
+    }
+
     const getOffsetParent =
       this.strategy === 'absolute'
         ? (element: Element) => platform.getOffsetParent(element, offsetParent)
         : platform.getOffsetParent;
 
-    const { x, y, strategy, placement } = await computePosition(this.triggerElement, this.panel, {
+    const { x, y, strategy, placement, middlewareData } = await computePosition(this.triggerElement, this.panel, {
       placement: this.placement,
       middleware,
       strategy: this.strategy,
@@ -162,12 +172,30 @@ export default class FloatingPanelElement extends ImpulseElement {
       position: strategy,
     });
 
-    this.setAttribute('data-current-placement', placement);
+    if (this.arrow && middlewareData.arrow) {
+      const { x, y } = middlewareData.arrow;
+      Object.assign(this.arrow.style, {
+        left: typeof x === 'number' ? `${x}px` : '',
+        top: typeof y === 'number' ? `${y}px` : '',
+      });
+    }
+
+    this.setCurrentPlacement(placement);
     this.emit('changed');
   }
 
   private get triggerElement() {
     return document.getElementById(this.triggerId) || this.trigger;
+  }
+
+  private setCurrentPlacement(placement: string) {
+    if (placement) {
+      this.setAttribute('data-current-placement', placement);
+      this.panel.setAttribute('data-current-placement', placement);
+    } else {
+      this.removeAttribute('data-current-placement');
+      this.panel.removeAttribute('data-current-placement');
+    }
   }
 }
 
