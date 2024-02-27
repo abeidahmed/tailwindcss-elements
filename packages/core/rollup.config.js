@@ -13,7 +13,6 @@ export default [
         dir: 'dist',
         entryFileNames: '[name].js',
         format: 'es',
-        preserveModules: true,
         preserveModulesRoot: 'src',
       },
     ],

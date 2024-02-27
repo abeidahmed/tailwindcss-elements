@@ -15,16 +15,19 @@ describe('Floating panel', () => {
 
     expect(el).not.to.have.attribute('active');
     expect(el).not.to.have.attribute('data-current-placement');
+    expect(panel).not.to.have.attribute('data-current-placement');
 
     el.active = true;
     expect(el).to.have.attribute('active');
     await waitUntil(() => el.hasAttribute('data-current-placement'));
     expect(el).to.have.attribute('data-current-placement', 'bottom-start');
+    expect(panel).to.have.attribute('data-current-placement', 'bottom-start');
     expect(panel).to.have.style('position', 'absolute');
 
     el.active = false;
     expect(el).not.to.have.attribute('active');
     expect(el).not.to.have.attribute('data-current-placement');
+    expect(panel).not.to.have.attribute('data-current-placement');
   });
 
   it('setting the initial placement', async () => {
