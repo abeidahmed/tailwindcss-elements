@@ -1,10 +1,10 @@
 import { ImpulseElement, property, registerElement, target, targets } from '@ambiki/impulse';
-import uniqueId from '../../helpers/unique_id';
-import focusTrap from '../../helpers/focus_trap';
-import useOutsideClick from '../../hooks/use_outside_click';
-import { isLooselyFocusable } from '../../helpers/focus';
 import { cycle } from '../../helpers/array';
-import { isDisabled } from '../../helpers/dom';
+import { isDisabled, setSafeAttribute } from '../../helpers/dom';
+import { isLooselyFocusable } from '../../helpers/focus';
+import focusTrap from '../../helpers/focus_trap';
+import uniqueId from '../../helpers/unique_id';
+import useOutsideClick from '../../hooks/use_outside_click';
 
 @registerElement('twc-dropdown')
 export default class DropdownElement extends ImpulseElement {
@@ -81,9 +81,7 @@ export default class DropdownElement extends ImpulseElement {
     trigger.setAttribute('aria-haspopup', 'menu');
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('data-headlessui-state', '');
-    if (!trigger.id) {
-      trigger.id = uniqueId();
-    }
+    setSafeAttribute(trigger, 'id', uniqueId());
   }
 
   triggerDisconnected(trigger: HTMLButtonElement) {
@@ -96,9 +94,7 @@ export default class DropdownElement extends ImpulseElement {
     menu.setAttribute('role', 'menu');
     menu.setAttribute('tabindex', '-1');
     menu.setAttribute('data-headlessui-state', '');
-    if (!menu.id) {
-      menu.id = uniqueId();
-    }
+    setSafeAttribute(menu, 'id', uniqueId());
   }
 
   menuDisconnected(menu: HTMLElement) {
@@ -114,9 +110,7 @@ export default class DropdownElement extends ImpulseElement {
     menuItem.setAttribute('role', 'menuitem');
     menuItem.setAttribute('tabindex', '-1');
     menuItem.setAttribute('data-headlessui-state', '');
-    if (!menuItem.id) {
-      menuItem.id = uniqueId();
-    }
+    setSafeAttribute(menuItem, 'id', uniqueId());
   }
 
   menuItemsDisconnected(menuItem: HTMLElement) {
