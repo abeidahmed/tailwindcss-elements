@@ -185,7 +185,10 @@ export default class FloatingPanelElement extends ImpulseElement {
   }
 
   private get triggerElement() {
-    return document.getElementById(this.triggerId) || this.trigger;
+    if (this.trigger) {
+      return this.trigger;
+    }
+    return document.getElementById(this.triggerId);
   }
 
   private setCurrentPlacement(placement: string) {
