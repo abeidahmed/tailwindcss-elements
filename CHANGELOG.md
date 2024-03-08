@@ -6,15 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2024-03-08
+
 ### Added
 
-- Add Tooltip element
-- Support arrow in Floating panel element
-- Allow trigger id to be set in the Floating panel element
+- Add Tooltip element ([#31](https://github.com/abeidahmed/tailwindcss-elements/pull/31))
+- Support arrow in Floating panel element ([#29](https://github.com/abeidahmed/tailwindcss-elements/pull/29))
+- Allow trigger id to be set in the Floating panel element ([#28](https://github.com/abeidahmed/tailwindcss-elements/pull/28))
 
 ### Changed
 
-- Set Floating Panel element's default strategy to "fixed"
+- Set Floating Panel element's default strategy to "fixed" ([#33](https://github.com/abeidahmed/tailwindcss-elements/pull/33))
 
 ## [0.2.0] - 2024-01-14
 
@@ -51,7 +53,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Add Popover element ([#3](https://github.com/abeidahmed/tailwindcss-elements/pull/3))
 - Add Switch element ([#2](https://github.com/abeidahmed/tailwindcss-elements/pull/2))
 
-[unreleased]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.0.1...v0.1.0
 [0.0.1]: https://github.com/abeidahmed/tailwindcss-elements/releases/tag/v0.0.1
