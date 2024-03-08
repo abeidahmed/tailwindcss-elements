@@ -39,7 +39,7 @@ export default class FloatingPanelElement extends ImpulseElement {
    * One of 'absolute' or 'fixed'.
    * https://floating-ui.com/docs/computeposition#strategy
    */
-  @property() strategy: Strategy = 'absolute';
+  @property() strategy: Strategy = 'fixed';
 
   /**
    * The initial position of the panel. This placement can be changed to keep the panel within the viewport.

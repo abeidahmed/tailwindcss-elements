@@ -22,7 +22,7 @@ describe('Floating panel', () => {
     await waitUntil(() => el.hasAttribute('data-current-placement'));
     expect(el).to.have.attribute('data-current-placement', 'bottom-start');
     expect(panel).to.have.attribute('data-current-placement', 'bottom-start');
-    expect(panel).to.have.style('position', 'absolute');
+    expect(panel).to.have.style('position', 'fixed');
 
     el.active = false;
     expect(el).not.to.have.attribute('active');

@@ -49,11 +49,11 @@ For more info, visit the [official docs](https://floating-ui.com/docs/computePos
 
 ### Setting the positioning strategy
 
-By default, the positioning strategy is set as `absolute`, but you can set it to one of `absolute` or `fixed` by
+By default, the positioning strategy is set as `fixed`, but you can set it to one of `absolute` or `fixed` by
 setting the `strategy` attribute on the element.
 
 ```html
-<twc-floating-panel strategy="fixed">
+<twc-floating-panel strategy="absolute">
   ...
 </twc-floating-panel>
 ```
