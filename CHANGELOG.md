@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Support arrow in Floating panel element
 - Allow trigger id to be set in the Floating panel element
 
+### Changed
+
+- Set Floating Panel element's default strategy to "fixed"
+
 ## [0.2.0] - 2024-01-14
 
 ### Added
