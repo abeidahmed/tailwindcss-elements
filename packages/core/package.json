@@ -45,6 +45,10 @@
     "./elements/tabs": {
       "types": "./dist/elements/tabs/index.d.ts",
       "default": "./dist/elements/tabs/index.js"
+    },
+    "./elements/tooltip": {
+      "types": "./dist/elements/tooltip/index.d.ts",
+      "default": "./dist/elements/tooltip/index.js"
     }
   },
   "files": [
@@ -65,6 +69,7 @@
   "dependencies": {
     "@ambiki/impulse": "^0.2.0",
     "@floating-ui/dom": "^1.6.3",
+    "@oddbird/popover-polyfill": "^0.4.0",
     "composed-offset-position": "^0.0.4",
     "tabbable": "^6.2.0"
   }

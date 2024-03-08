@@ -4,3 +4,4 @@ import './elements/floating_panel';
 import './elements/popover';
 import './elements/switch';
 import './elements/tabs';
+import './elements/tooltip';

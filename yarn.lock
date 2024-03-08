@@ -298,6 +298,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@oddbird/popover-polyfill@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@oddbird/popover-polyfill/-/popover-polyfill-0.4.0.tgz#abba79014e670b6d95451512b29afca99eab571a"
+  integrity sha512-jrqoTI8lk5UziDsDPJ2Y+nmXYCcRhmr6uMARr3v/W6AMxRgsnRLWJyWKYr6FjaGMgbyxXG+OkCUPQY4Xl3toGg==
+
 "@open-wc/dedupe-mixin@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@open-wc/dedupe-mixin/-/dedupe-mixin-1.4.0.tgz#b3c58f8699b197bb5e923d624c720e67c9f324d6"
