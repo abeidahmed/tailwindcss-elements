@@ -3,6 +3,7 @@ import uniqueId from '../../helpers/unique_id';
 import focusTrap from '../../helpers/focus_trap';
 import useOutsideClick from '../../hooks/use_outside_click';
 import { isLooselyFocusable } from '../../helpers/focus';
+import { setSafeAttribute } from '../../helpers/dom';
 
 @registerElement('twc-popover')
 export default class PopoverElement extends ImpulseElement {
@@ -97,9 +98,7 @@ export default class PopoverElement extends ImpulseElement {
    * Called when the `panel` element is connected to the DOM.
    */
   panelConnected(panel: HTMLElement) {
-    if (!panel.id) {
-      panel.id = uniqueId();
-    }
+    setSafeAttribute(panel, 'id', uniqueId());
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('tabindex', '-1');
     panel.setAttribute('data-headlessui-state', '');

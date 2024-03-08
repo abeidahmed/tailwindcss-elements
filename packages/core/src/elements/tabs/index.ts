@@ -52,9 +52,7 @@ export default class TabsElement extends ImpulseElement {
     trigger.setAttribute('tabindex', '-1');
     trigger.setAttribute('aria-selected', 'false');
     setSafeAttribute(trigger, 'data-headlessui-state', '');
-    if (!trigger.id) {
-      trigger.id = uniqueId();
-    }
+    setSafeAttribute(trigger, 'id', uniqueId());
   }
 
   triggersDisconnected(trigger: HTMLElement) {
@@ -65,9 +63,7 @@ export default class TabsElement extends ImpulseElement {
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('tabindex', '0');
     setSafeAttribute(panel, 'data-headlessui-state', '');
-    if (!panel.id) {
-      panel.id = uniqueId();
-    }
+    setSafeAttribute(panel, 'id', uniqueId());
   }
 
   private handleTriggerClick(event: Event) {
