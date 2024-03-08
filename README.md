@@ -33,6 +33,7 @@ import 'tailwindcss-elements/elements/dropdown';
 - [Popover](./packages/core/src/elements/popover/README.md)
 - [Switch](./packages/core/src/elements/switch/README.md)
 - [Tabs](./packages/core/src/elements/tabs/README.md)
+- [Tooltip](./packages/core/src/elements/tooltip/README.md)
 
 ## Styling
 
