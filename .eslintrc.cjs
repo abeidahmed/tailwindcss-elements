@@ -3,10 +3,11 @@
 module.exports = {
   root: true,
   plugins: ['prettier', '@typescript-eslint'],
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:vue/vue3-recommended', 'prettier'],
   reportUnusedDisableDirectives: true,
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
     sourceType: 'module',
   },
@@ -20,7 +21,13 @@ module.exports = {
       },
     },
     {
-      files: ['.eslintrc.cjs', '.prettierrc.cjs', 'rollup.config.js', 'web-test-runner.config.js'],
+      files: [
+        '.eslintrc.cjs',
+        '.prettierrc.cjs',
+        'rollup.config.js',
+        'web-test-runner.config.js',
+        'tailwind.config.cjs',
+      ],
       env: {
         node: true,
       },
@@ -28,5 +35,6 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': ['error'],
+    'vue/multi-word-component-names': 'off',
   },
 };
