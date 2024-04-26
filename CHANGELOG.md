@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- Show dialog by default if `twc-dialog` element has the `open` attribute
 - Nested dialog resets `body` padding
 
 ## [0.3.0] - 2024-03-08

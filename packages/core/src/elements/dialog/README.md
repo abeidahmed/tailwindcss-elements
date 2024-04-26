@@ -31,6 +31,16 @@ button.addEventListener('click', openDialog);
 
 ## Examples
 
+### Show dialog by default
+
+You can add the `open` attribute on the `twc-dialog` element, and the dialog will be shown by default.
+
+```html
+<twc-dialog open>
+  <dialog data-target="twc-dialog.dialog">Contents</dialog>
+</twc-dialog>
+```
+
 ### Programmatically toggling the visiblity state
 
 ```html
