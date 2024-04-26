@@ -1,4 +1,5 @@
 import { ImpulseElement, property, registerElement, target } from '@ambiki/impulse';
+import scrollLock from '../../helpers/scroll_lock';
 
 @registerElement('twc-dialog')
 export default class DialogElement extends ImpulseElement {
@@ -8,6 +9,8 @@ export default class DialogElement extends ImpulseElement {
   @property({ type: Boolean }) open = false;
 
   @target() dialog: HTMLDialogElement;
+
+  private _scrollLockController?: AbortController;
 
   constructor() {
     super();
@@ -107,15 +110,13 @@ export default class DialogElement extends ImpulseElement {
   }
 
   private hideOverflow() {
-    document.body.style.paddingRight = `${window.innerWidth - document.body.clientWidth}px`;
-    document.body.style.overflow = 'hidden';
+    this._scrollLockController = scrollLock();
   }
 
   private showOverflow() {
     // If the parent dialog is still open, do not remove the styles.
     if (!this.closest('dialog[open]')) {
-      document.body.style.removeProperty('padding-right');
-      document.body.style.removeProperty('overflow');
+      this._scrollLockController?.abort();
     }
   }
 }
