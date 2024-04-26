@@ -6,10 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.3.1] - 2024-04-26
+
 ### Fixed
 
-- Show dialog by default if `twc-dialog` element has the `open` attribute
-- Nested dialog resets `body` padding
+- Show dialog by default if `twc-dialog` element has the `open` attribute ([#37](https://github.com/abeidahmed/tailwindcss-elements/pull/37))
+- Nested dialog resets `body` padding ([#36](https://github.com/abeidahmed/tailwindcss-elements/pull/36))
 
 ## [0.3.0] - 2024-03-08
 
@@ -58,7 +60,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Add Popover element ([#3](https://github.com/abeidahmed/tailwindcss-elements/pull/3))
 - Add Switch element ([#2](https://github.com/abeidahmed/tailwindcss-elements/pull/2))
 
-[unreleased]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/abeidahmed/tailwindcss-elements/compare/v0.0.1...v0.1.0
