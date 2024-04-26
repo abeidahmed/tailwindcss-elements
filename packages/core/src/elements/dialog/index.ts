@@ -20,6 +20,15 @@ export default class DialogElement extends ImpulseElement {
   }
 
   /**
+   * Called when the element is connected to the DOM.
+   */
+  connected() {
+    if (this.open) {
+      this.showModal();
+    }
+  }
+
+  /**
    * Called when the element is removed from the DOM.
    */
   disconnected() {

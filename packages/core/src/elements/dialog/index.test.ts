@@ -49,6 +49,18 @@ describe('Dialog', async () => {
     expect(document.body).not.to.have.style('overflow', 'hidden');
   });
 
+  it('opens the dialog by default', async () => {
+    const el = await fixture<DialogElement>(html`
+      <twc-dialog open>
+        <dialog data-target="twc-dialog.dialog">Contents</dialog>
+      </twc-dialog>
+    `);
+    const dialog = el.querySelector('dialog')!;
+
+    assertDialogShown(el, dialog);
+    expect(document.body).to.have.style('overflow', 'hidden');
+  });
+
   it('closes the dialog when clicked outside', async () => {
     const el = await fixture<DialogElement>(html`
       <twc-dialog>
