@@ -1,17 +1,15 @@
-import { ImpulseElement, property, registerElement, target } from '@ambiki/impulse';
-import uniqueId from '../../helpers/unique_id';
-import focusTrap from '../../helpers/focus_trap';
-import useOutsideClick from '../../hooks/use_outside_click';
-import { isLooselyFocusable } from '../../helpers/focus';
+import { ImpulseElement, registerElement, target } from '@ambiki/impulse';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 import { setSafeAttribute } from '../../helpers/dom';
+import { isLooselyFocusable } from '../../helpers/focus';
+import focusTrap from '../../helpers/focus_trap';
+import uniqueId from '../../helpers/unique_id';
+import useOutsideClick from '../../hooks/use_outside_click';
+
+const popovers = new Set<PopoverElement>();
 
 @registerElement('twc-popover')
 export default class PopoverElement extends ImpulseElement {
-  /**
-   * Whether the popover is open or not. To make the popover open by default, set the `open` attribute.
-   */
-  @property({ type: Boolean }) open = false;
-
   @target() trigger: HTMLButtonElement;
   @target() panel: HTMLElement;
 
@@ -30,11 +28,15 @@ export default class PopoverElement extends ImpulseElement {
     this.addEventListener('keydown', this.handleKeydown);
     this.trigger.setAttribute('aria-controls', this.panel.id);
 
+    if (!isSupported()) {
+      apply();
+    }
+
     useOutsideClick(this, {
       boundaries: [this.trigger, this.panel],
-      callback: (event: Event, target: HTMLElement) => {
-        if (this.open) {
-          this.open = false;
+      callback: (event, target) => {
+        if (this.open && !this.hasNestedOpenPopovers) {
+          this.hide();
           if (!isLooselyFocusable(target)) {
             // Prevent dialogs from closing accidentally.
             event.preventDefault();
@@ -44,11 +46,6 @@ export default class PopoverElement extends ImpulseElement {
         }
       },
     });
-
-    // If the popover is initially open we only want to change the attributes without trapping the focus.
-    if (this.open) {
-      this.syncState(true);
-    }
   }
 
   /**
@@ -56,31 +53,13 @@ export default class PopoverElement extends ImpulseElement {
    */
   disconnected() {
     this.removeEventListener('keydown', this.handleKeydown);
-    this.open = false;
+    this.hide();
   }
 
   /**
-   * Called when the `open` property changes.
+   * Called when the trigger is connected to the DOM.
    */
-  openChanged(value: boolean) {
-    if (value) {
-      this.syncState(true);
-      if (this.floatingPanel) {
-        this.floatingPanel.active = true;
-      }
-    } else {
-      this._focusTrap?.abort();
-      this.syncState(false);
-      if (this.floatingPanel) {
-        this.floatingPanel.active = false;
-      }
-    }
-  }
-
-  /**
-   * Called when the `trigger` element is connected to the DOM.
-   */
-  triggerConnected(trigger: HTMLButtonElement) {
+  triggerConnected(trigger: HTMLElement) {
     trigger.addEventListener('click', this.handleTriggerClick);
     trigger.setAttribute('aria-haspopup', 'dialog');
     trigger.setAttribute('aria-expanded', 'false');
@@ -88,17 +67,18 @@ export default class PopoverElement extends ImpulseElement {
   }
 
   /**
-   * Called when the `trigger` element is removed from the DOM.
+   * Called when the trigger is removed from the DOM.
    */
-  triggerDisconnected(trigger: HTMLButtonElement) {
+  triggerDisconnected(trigger: HTMLElement) {
     trigger.removeEventListener('click', this.handleTriggerClick);
   }
 
   /**
-   * Called when the `panel` element is connected to the DOM.
+   * Called when the panel is connected to the DOM.
    */
   panelConnected(panel: HTMLElement) {
     setSafeAttribute(panel, 'id', uniqueId());
+    panel.setAttribute('popover', 'manual');
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('tabindex', '-1');
     panel.setAttribute('data-headlessui-state', '');
@@ -106,12 +86,11 @@ export default class PopoverElement extends ImpulseElement {
 
   private handleTriggerClick() {
     if (this.open) {
-      this.open = false;
+      this.hide();
       this.trigger.focus();
       this.emit('hidden');
     } else {
-      this.open = true;
-      this._focusTrap = focusTrap(this.panel);
+      this.show();
       this.emit('shown');
     }
   }
@@ -122,41 +101,81 @@ export default class PopoverElement extends ImpulseElement {
         if (this.open) {
           event.preventDefault();
           event.stopPropagation();
-          this.open = false;
-          this.trigger.focus();
-          this.emit('hidden');
+          this.hide(event);
         }
         break;
     }
   }
 
   /**
-   * Hides the popover and focuses and emits and event if the action was invoked via a user interaction.
-   *
-   * @example
-   * <twc-popover>
-   *   <button type="button" data-action="click->twc-popover#hide">Close</button>
-   * </twc-popover>
+   * Shows the popover.
+   */
+  show() {
+    if (this.open) return;
+
+    popovers.add(this);
+    this.closeOtherPopovers();
+
+    if (this.floatingPanel) {
+      this.floatingPanel.active = true;
+    }
+
+    this.panel.showPopover();
+    this._focusTrap = focusTrap(this.panel);
+    this.panel.setAttribute('data-headlessui-state', 'open');
+    this.trigger.setAttribute('data-headlessui-state', 'open');
+    this.trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  /**
+   * Hides the popover.
+   * If this function is called by a user interaction, after hiding, it will focus on the trigger element and emit a
+   * `hidden` event.
    */
   hide(event?: Event) {
     if (!this.open) return;
-    this.open = false;
 
-    // The action was invoked via a user interaction.
+    this._focusTrap?.abort();
+    this.panel.hidePopover();
+    this.panel.setAttribute('data-headlessui-state', '');
+    this.trigger.setAttribute('data-headlessui-state', '');
+    this.trigger.setAttribute('aria-expanded', 'false');
+
+    if (this.floatingPanel) {
+      this.floatingPanel.active = false;
+    }
+
+    popovers.delete(this);
+
     if (event) {
       this.trigger.focus();
       this.emit('hidden');
     }
   }
 
+  private closeOtherPopovers() {
+    for (const popover of popovers) {
+      if (popover === this || popover.contains(this)) continue;
+      popover.hide();
+    }
+  }
+
+  /**
+   * Whether the popover is open or not.
+   */
+  get open() {
+    return this.panel.matches(':popover-open');
+  }
+
   get floatingPanel() {
     return this.querySelector('twc-floating-panel');
   }
 
-  private syncState(state: boolean) {
-    this.trigger.setAttribute('aria-expanded', state.toString());
-    this.trigger.setAttribute('data-headlessui-state', state ? 'open' : '');
-    this.panel.setAttribute('data-headlessui-state', state ? 'open' : '');
+  /**
+   * Return `true` if there are nested popovers that are open, else `false`.
+   */
+  get hasNestedOpenPopovers() {
+    return Array.from(this.querySelectorAll<PopoverElement>(this.identifier)).filter((p) => p.open).length !== 0;
   }
 }
 
