@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import GdButton from '../../components/button.vue';
+
+function notify(message: string) {
+  alert(message);
+}
 </script>
 
 <template>
@@ -15,6 +19,7 @@ import GdButton from '../../components/button.vue';
             type="button"
             data-target="twc-dropdown.menuItems"
             class="text-gray-900 group flex w-full items-center rounded px-2 py-2 text-sm ui-active:bg-gray-100 disabled:text-gray-400"
+            @click="notify('You clicked on Edit')"
           >
             Edit
           </button>
