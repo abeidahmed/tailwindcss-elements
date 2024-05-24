@@ -255,7 +255,6 @@ export default class DropdownElement extends ImpulseElement {
     }
     // Click the active menu item.
     if (this.menuItemActive(menuItem)) {
-      menuItem.click();
       this.open = false;
       this.trigger.focus();
       this.emit('changed', { detail: { relatedTarget: menuItem } });
