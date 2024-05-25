@@ -4,15 +4,13 @@ import Sinon from 'sinon';
 import FloatingPanelElement from '../floating_panel';
 import PopoverElement from './index';
 
-function assertPopoverShown(el: PopoverElement, trigger: HTMLButtonElement, panel: Element) {
-  expect(el).to.have.attribute('open');
+function assertPopoverShown(trigger: HTMLButtonElement, panel: Element) {
   expect(trigger).to.have.attribute('data-headlessui-state', 'open');
   expect(trigger).to.have.attribute('aria-expanded', 'true');
   expect(panel).to.have.attribute('data-headlessui-state', 'open');
 }
 
-function assertPopoverHidden(el: PopoverElement, trigger: HTMLButtonElement, panel: Element) {
-  expect(el).not.to.have.attribute('open');
+function assertPopoverHidden(trigger: HTMLButtonElement, panel: Element) {
   expect(trigger).to.have.attribute('data-headlessui-state', '');
   expect(trigger).to.have.attribute('aria-expanded', 'false');
   expect(panel).to.have.attribute('data-headlessui-state', '');
@@ -26,8 +24,6 @@ describe('Popover', () => {
         <div data-target="twc-popover.panel"></div>
       </twc-popover>
     `);
-
-    expect(el).not.to.have.attribute('open');
 
     const trigger = el.querySelector('button')!;
     const panel = el.querySelector('div')!;
@@ -61,12 +57,12 @@ describe('Popover', () => {
     const panel = el.querySelector('div')!;
 
     trigger.click();
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(trigger, panel);
     expect(document.activeElement).to.eq(panel);
     expect(shownHandler.calledOnce).to.be.true;
 
     trigger.click();
-    assertPopoverHidden(el, trigger, panel);
+    assertPopoverHidden(trigger, panel);
     expect(document.activeElement).to.eq(trigger);
     expect(hiddenHandler.calledOnce).to.be.true;
   });
@@ -86,11 +82,11 @@ describe('Popover', () => {
     const panel = el.querySelector('div')!;
 
     trigger.click();
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(trigger, panel);
     expect(document.activeElement).to.eq(panel);
 
     await sendKeys({ press: 'Escape' });
-    assertPopoverHidden(el, trigger, panel);
+    assertPopoverHidden(trigger, panel);
     expect(document.activeElement).to.eq(trigger);
     expect(hiddenHandler.calledOnce).to.be.true;
   });
@@ -112,11 +108,11 @@ describe('Popover', () => {
     const closeButton = el.querySelector<HTMLButtonElement>('[data-test-id="close-btn"]')!;
 
     trigger.click();
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(trigger, panel);
     expect(document.activeElement).to.eq(closeButton);
 
     closeButton.click();
-    assertPopoverHidden(el, trigger, panel);
+    assertPopoverHidden(trigger, panel);
     expect(document.activeElement).to.eq(trigger);
     expect(hiddenHandler.calledOnce).to.be.true;
   });
@@ -136,36 +132,10 @@ describe('Popover', () => {
     const panel = el.querySelector('div')!;
 
     trigger.click();
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(trigger, panel);
 
     el.hide();
-    assertPopoverHidden(el, trigger, panel);
-    expect(hiddenHandler.called).to.be.false;
-  });
-
-  it('toggles the popover when setting the open attribute', async () => {
-    const el = await fixture<PopoverElement>(html`
-      <twc-popover>
-        <button type="button" data-target="twc-popover.trigger">Toggle</button>
-        <div data-target="twc-popover.panel"></div>
-      </twc-popover>
-    `);
-
-    const shownHandler = Sinon.spy();
-    el.addEventListener(`${el.identifier}:shown`, shownHandler);
-
-    const hiddenHandler = Sinon.spy();
-    el.addEventListener(`${el.identifier}:hidden`, hiddenHandler);
-
-    const trigger = el.querySelector('button')!;
-    const panel = el.querySelector('div')!;
-
-    el.open = true;
-    assertPopoverShown(el, trigger, panel);
-    expect(shownHandler.called).to.be.false;
-
-    el.open = false;
-    assertPopoverHidden(el, trigger, panel);
+    assertPopoverHidden(trigger, panel);
     expect(hiddenHandler.called).to.be.false;
   });
 
@@ -184,30 +154,11 @@ describe('Popover', () => {
     const panel = el.querySelector('div')!;
 
     trigger.click();
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(trigger, panel);
 
     await sendMouse({ type: 'click', position: [0, 0] });
-    assertPopoverHidden(el, trigger, panel);
+    assertPopoverHidden(trigger, panel);
     expect(hiddenHandler.calledOnce).to.be.true;
-  });
-
-  it('shows the popover initially if the open attribute is set to true', async () => {
-    const el = await fixture<PopoverElement>(html`
-      <twc-popover open>
-        <button type="button" data-target="twc-popover.trigger">Toggle</button>
-        <div data-target="twc-popover.panel"></div>
-      </twc-popover>
-    `);
-
-    const shownHandler = Sinon.spy();
-    el.addEventListener(`${el.identifier}:shown`, shownHandler);
-
-    const trigger = el.querySelector('button')!;
-    const panel = el.querySelector('div')!;
-
-    assertPopoverShown(el, trigger, panel);
-    expect(shownHandler.called).to.be.false;
-    expect(document.activeElement).to.eq(document.body);
   });
 
   it('closes all the nested popovers and the parent popover when parent trigger button is clicked', async () => {
@@ -230,18 +181,85 @@ describe('Popover', () => {
     const nestedPanel = nestedEl.querySelector('div')!;
 
     trigger.click();
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(trigger, panel);
 
     nestedTrigger.click();
-    assertPopoverShown(nestedEl, nestedTrigger, nestedPanel);
-    assertPopoverShown(el, trigger, panel);
+    assertPopoverShown(nestedTrigger, nestedPanel);
+    assertPopoverShown(trigger, panel);
 
     await sendMouse({
       type: 'click',
       position: [trigger.getBoundingClientRect().x, trigger.getBoundingClientRect().y],
     });
-    assertPopoverHidden(el, trigger, panel);
-    assertPopoverHidden(nestedEl, nestedTrigger, nestedPanel);
+    assertPopoverHidden(trigger, panel);
+    assertPopoverHidden(nestedTrigger, nestedPanel);
+  });
+
+  it('closes popover in order when clicked outside', async () => {
+    const el = await fixture<PopoverElement>(html`
+      <twc-popover>
+        <button type="button" data-target="twc-popover.trigger" data-test-id="parent-trigger">Toggle</button>
+        <div data-target="twc-popover.panel" data-test-id="parent-panel">
+          <twc-popover>
+            <button type="button" data-target="twc-popover.trigger">Toggle</button>
+            <div data-target="twc-popover.panel"></div>
+          </twc-popover>
+        </div>
+      </twc-popover>
+    `);
+
+    const trigger = el.querySelector<HTMLButtonElement>('[data-test-id="parent-trigger"]')!;
+    const panel = el.querySelector('[data-test-id="parent-panel"]')!;
+    const nestedEl = el.querySelector('twc-popover')!;
+    const nestedTrigger = nestedEl.querySelector('button')!;
+    const nestedPanel = nestedEl.querySelector('div')!;
+
+    trigger.click();
+    nestedTrigger.click();
+
+    await sendMouse({ type: 'click', position: [0, 0] });
+    assertPopoverHidden(nestedTrigger, nestedPanel);
+    assertPopoverShown(trigger, panel);
+
+    await sendMouse({ type: 'click', position: [0, 0] });
+    assertPopoverHidden(trigger, panel);
+  });
+
+  it('closes all open popovers when opening a non-related popover', async () => {
+    const el = await fixture<PopoverElement>(html`
+      <div>
+        <twc-popover>
+          <button type="button" data-target="twc-popover.trigger" data-test-id="diff-trigger">Toggle</button>
+          <div data-target="twc-popover.panel" data-test-id="diff-panel"></div>
+        </twc-popover>
+        <twc-popover>
+          <button type="button" data-target="twc-popover.trigger" data-test-id="parent-trigger">Toggle</button>
+          <div data-target="twc-popover.panel" data-test-id="parent-panel">
+            <twc-popover data-test-id="nested-popover">
+              <button type="button" data-target="twc-popover.trigger">Toggle</button>
+              <div data-target="twc-popover.panel"></div>
+            </twc-popover>
+          </div>
+        </twc-popover>
+      </div>
+    `);
+
+    const diffTrigger = el.querySelector<HTMLButtonElement>('[data-test-id="diff-trigger"]')!;
+    const diffPanel = el.querySelector('[data-test-id="diff-panel"]')!;
+
+    const trigger = el.querySelector<HTMLButtonElement>('[data-test-id="parent-trigger"]')!;
+    const panel = el.querySelector('[data-test-id="parent-panel"]')!;
+    const nestedEl = el.querySelector<PopoverElement>('[data-test-id="nested-popover"]')!;
+    const nestedTrigger = nestedEl.querySelector('button')!;
+    const nestedPanel = nestedEl.querySelector('div')!;
+
+    trigger.click();
+    nestedTrigger.click();
+
+    diffTrigger.click();
+    assertPopoverHidden(trigger, panel);
+    assertPopoverHidden(nestedTrigger, nestedPanel);
+    assertPopoverShown(diffTrigger, diffPanel);
   });
 
   it('starts and stops the positioning logic', async () => {
@@ -256,10 +274,10 @@ describe('Popover', () => {
 
     const floatingPanel = el.querySelector('twc-floating-panel')! as FloatingPanelElement;
 
-    el.open = true;
+    el.show();
     expect(floatingPanel).to.have.attribute('active');
 
-    el.open = false;
+    el.hide();
     expect(floatingPanel).not.to.have.attribute('active');
   });
 });

@@ -11,9 +11,9 @@ import 'tailwindcss-elements/elements/popover';
 ## Usage
 
 ```html
-<twc-popover class="relative">
+<twc-popover>
   <button data-target="twc-popover.trigger" type="button">Toggle popover</button>
-  <div data-target="twc-popover.panel" class="absolute hidden data-[headlessui-state='open']:block">
+  <div data-target="twc-popover.panel">
     Popover contents!
   </div>
 </twc-popover>
@@ -21,17 +21,11 @@ import 'tailwindcss-elements/elements/popover';
 
 [![Edit Popover](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/popover-yyvw2d)
 
+**Note:** The popover element uses the [`popover`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover)
+attribute and comes with a [polyfill](https://github.com/oddbird/popover-polyfill). Therefore, you should not add any
+hidden classes to the popover' panel as it is managed by the browser.
+
 ## Examples
-
-### Default to the open state
-
-You can set the `open` attribute on the element and it will be open by default.
-
-```html
-<twc-popover open>
-  ...
-</twc-popover>
-```
 
 ### Programmatically toggling the visibility state
 
@@ -45,10 +39,10 @@ You can set the `open` attribute on the element and it will be open by default.
 const element = document.querySelector('twc-popover');
 
 // Show
-element.open = true;
+element.show();
 
 // Hide
-element.open = false;
+element.hide();
 ```
 
 ### Adding a close button inside the popover
@@ -59,7 +53,7 @@ will close the parent popover.
 ```html
 <twc-popover>
   <button data-target="twc-popover.trigger" type="button">Toggle popover</button>
-  <div data-target="twc-popover.panel" class="hidden data-[headlessui-state='open']:block">
+  <div data-target="twc-popover.panel">
     Popover contents!
     <button type="button" data-action="click->twc-popover#hide">x</button>
   </div>
@@ -71,12 +65,12 @@ will close the parent popover.
 ```html
 <twc-popover>
   <button data-target="twc-popover.trigger" type="button">Toggle popover</button>
-  <div data-target="twc-popover.panel" class="hidden data-[headlessui-state='open']:block">
+  <div data-target="twc-popover.panel">
     Look another popover!
 
     <twc-popover>
       <button data-target="twc-popover.trigger" type="button">Toggle nested popover</button>
-      <div data-target="twc-popover.panel" class="hidden data-[headlessui-state='open']:block">
+      <div data-target="twc-popover.panel">
         Nested popover contents!
       </div>
     </twc-popover>
@@ -90,10 +84,10 @@ By default, the positioning logic is not taken care of when you use the `twc-pop
 wrapping the trigger and panel with the [`twc-floating-panel`](../floating_panel/README.md) element.
 
 ```html
-<twc-popover class="relative">
+<twc-popover>
   <twc-floating-panel>
     <button data-target="twc-popover.trigger twc-floating-panel.trigger" type="button">Toggle popover</button>
-    <div data-target="twc-popover.panel twc-floating-panel.panel" class="absolute hidden data-[headlessui-state='open']:block">
+    <div data-target="twc-popover.panel twc-floating-panel.panel">
       Popover contents!
     </div>
   </twc-floating-panel>

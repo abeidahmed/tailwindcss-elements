@@ -193,12 +193,12 @@ describe('Dialog', async () => {
     const dialog = twcDialog.querySelector('dialog')!;
 
     trigger.click();
-    expect(el).to.have.attribute('open');
+    expect(el.open).to.eq(true);
 
     twcDialog.open = true;
     assertDialogShown(twcDialog, dialog);
 
     await sendKeys({ press: 'Escape' });
-    expect(el).to.have.attribute('open'); // Should not close the popover.
+    expect(el.open).to.eq(true); // Should not close the popover.
   });
 });
