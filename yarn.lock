@@ -20,10 +20,10 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@ambiki/impulse@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ambiki/impulse/-/impulse-0.2.0.tgz#c9fe2cbf9268a2097279de830628fc60dc23a617"
-  integrity sha512-RXeITv70eJWj3O52JIht2Bl2pwu3qdrI3Rcmg9FL8YBNkdiCaR0gnkGOLmDo5gd5k9x+LRbNj9wlk6QSGuybFQ==
+"@ambiki/impulse@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@ambiki/impulse/-/impulse-0.4.0.tgz#d8b7cc27a55cbc43f3ae2ffecc644891f1504389"
+  integrity sha512-mE3XSyR45eOByrkEgcJGTcPAhMQ09jUHGEYBsCNXMtQoHw5JoF4wXKT4CnNt98XpF9ARwI3sFeTTMuyoCo4n6g==
 
 "@babel/code-frame@^7.12.11":
   version "7.23.5"
