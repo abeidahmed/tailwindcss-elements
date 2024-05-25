@@ -49,6 +49,10 @@
     "./elements/tooltip": {
       "types": "./dist/elements/tooltip/index.d.ts",
       "default": "./dist/elements/tooltip/index.js"
+    },
+    "./hooks/use_outside_click": {
+      "types": "./dist/hooks/use_outside_click.d.ts",
+      "default": "./dist/hooks/use_outside_click.js"
     }
   },
   "files": [
@@ -62,9 +66,10 @@
   ],
   "scripts": {
     "build": "rollup --config rollup.config.js",
+    "build:prod": "NODE_ENV=production rollup --config rollup.config.js",
     "build:watch": "rollup --config rollup.config.js --watch",
     "clean": "rm -rf dist",
-    "prepublishOnly": "yarn clean && yarn build"
+    "prepublishOnly": "yarn clean && yarn build:prod"
   },
   "dependencies": {
     "@ambiki/impulse": "^0.4.0",
@@ -72,5 +77,9 @@
     "@oddbird/popover-polyfill": "^0.4.0",
     "composed-offset-position": "^0.0.4",
     "tabbable": "^6.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "globby": "^14.0.1"
   }
 }
