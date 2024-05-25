@@ -105,8 +105,7 @@ export default class TooltipElement extends ImpulseElement {
    * Hides the tooltip.
    */
   hide() {
-    // Called on the `disconnected` lifecycle callback and we need to make sure that these elements are defined.
-    if (this.panel && this.open) {
+    if (this.open) {
       this.panel.hidePopover();
       this.panel.setAttribute('data-headlessui-state', '');
       this.trigger?.setAttribute('data-headlessui-state', '');
