@@ -27,6 +27,7 @@ import 'tailwindcss-elements/elements/dropdown';
 
 ## Custom elements
 
+- [Accordion](./packages/core/src/elements/accordion/README.md)
 - [Dialog](./packages/core/src/elements/dialog/README.md)
 - [Dropdown](./packages/core/src/elements/dropdown/README.md)
 - [Floating panel](./packages/core/src/elements/floating_panel/README.md)

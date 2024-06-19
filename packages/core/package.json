@@ -22,6 +22,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.umd.js"
     },
+    "./elements/accordion": {
+      "types": "./dist/elements/accordion/index.d.ts",
+      "default": "./dist/elements/accordion/index.js"
+    },
     "./elements/dialog": {
       "types": "./dist/elements/dialog/index.d.ts",
       "default": "./dist/elements/dialog/index.js"
