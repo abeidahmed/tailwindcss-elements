@@ -1,3 +1,4 @@
+import './elements/accordion';
 import './elements/dialog';
 import './elements/dropdown';
 import './elements/floating_panel';
