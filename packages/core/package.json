@@ -57,6 +57,22 @@
     "./hooks/use_outside_click": {
       "types": "./dist/hooks/use_outside_click.d.ts",
       "default": "./dist/hooks/use_outside_click.js"
+    },
+    "./helpers/array": {
+      "types": "./dist/helpers/array.d.ts",
+      "default": "./dist/helpers/array.js"
+    },
+    "./helpers/focus_trap": {
+      "types": "./dist/helpers/focus_trap.d.ts",
+      "default": "./dist/helpers/focus_trap.js"
+    },
+    "./helpers/focus": {
+      "types": "./dist/helpers/focus.d.ts",
+      "default": "./dist/helpers/focus.js"
+    },
+    "./helpers/scroll_lock": {
+      "types": "./dist/helpers/scroll_lock.d.ts",
+      "default": "./dist/helpers/scroll_lock.js"
     }
   },
   "files": [

@@ -7,7 +7,14 @@ import { fileURLToPath } from 'node:url';
 import copy from 'rollup-plugin-copy';
 
 const production = process.env.NODE_ENV === 'production';
-const exportPaths = ['./src/elements/**/!(*.test).ts', './src/hooks/**/!(*.test).ts'];
+const exportPaths = [
+  './src/elements/**/!(*.test).ts',
+  './src/hooks/**/!(*.test).ts',
+  './src/helpers/array.ts',
+  './src/helpers/focus_trap.ts',
+  './src/helpers/focus.ts',
+  './src/helpers/scroll_lock.ts',
+];
 
 function pathEntries() {
   // Need to export these in package.json
