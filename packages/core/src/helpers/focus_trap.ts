@@ -58,12 +58,12 @@ export default function focusTrap(container: HTMLElement, { abortSignal }: { abo
   });
 
   function getFirstFocusableElement(container: HTMLElement) {
-    if (container.hasAttribute('autofocus') && isFocusable(container)) {
+    if (container.hasAttribute('autofocus')) {
       return container;
     }
 
     const element = container.querySelector<HTMLElement>('[autofocus]');
-    if (element && isFocusable(element)) {
+    if (element) {
       return element;
     }
 
@@ -84,7 +84,9 @@ export default function focusTrap(container: HTMLElement, { abortSignal }: { abo
     }
 
     if (element === document.activeElement) return;
-    element.focus({ preventScroll: true });
+    requestAnimationFrame(() => {
+      element.focus({ preventScroll: true });
+    });
     recentlyFocused = element;
   }
 
