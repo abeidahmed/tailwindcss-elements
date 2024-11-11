@@ -54,6 +54,7 @@ export default class PopoverElement extends ImpulseElement {
   disconnected() {
     this.removeEventListener('keydown', this.handleKeydown);
     this.hide();
+    popovers.delete(this); // Make sure to remove it from the set.
   }
 
   /**
